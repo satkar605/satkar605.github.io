@@ -1,91 +1,149 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Satkar Karki | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Satkar Karki</h1>
-      <p>Business Analyst · Product Thinker · Storytelling with Data</p>
-      <div class="cta-buttons">
-        <a href="assets/resume.pdf" class="btn">Download Resume</a>
-        <a href="https://linkedin.com/in/satkarkarki" class="btn">LinkedIn</a>
-        <a href="https://github.com/satkarkarki" class="btn">GitHub</a>
-      </div>
-    </div>
-    <div class="hero-image">
-      <img src="assets/images/headshot.jpg" alt="Satkar Karki Headshot">
-    </div>
-  </section>
+/* Base styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
 
-  <!-- About Me Section -->
-  <section class="about">
-    <div class="about-text">
-      <h2>About Me</h2>
-      <p>I am a business analyst with a passion for uncovering insights and crafting data-driven solutions that drive business success. Currently pursuing an M.S. in Business Analytics, I thrive on solving complex problems and making strategic decisions.</p>
-    </div>
-    <div class="about-info">
-      <img src="assets/images/headshot.jpg" alt="Satkar Karki">
-      <ul>
-        <li><strong>Location:</strong> South Dakota, USA</li>
-        <li><strong>Degree:</strong> M.S. in Business Analytics</li>
-        <li><strong>Email:</strong> satkarkarki@email.com</li>
-      </ul>
-    </div>
-  </section>
+/* Hero section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 10%;
+  background-color: #f5f0e6;
+}
 
-  <!-- Projects Section -->
-  <section class="projects">
-    <h2>Projects</h2>
-    <h3>Stakeholder Projects</h3>
-    <div class="project-grid">
-      <div class="card"><h4>Egg Price Forecasting</h4><p>Python, SQL, Time Series - Helped bakery plan inventory and reduce cost.</p></div>
-      <div class="card"><h4>Canyon Ranch Data Warehouse</h4><p>SQL Server, ERD - Enabled resort to track reservations and feedback efficiently.</p></div>
-      <div class="card"><h4>DoorDash Prediction</h4><p>Python, ML - Forecasted delivery times using traffic and order data.</p></div>
-      <div class="card"><h4>NCAA Referee Dashboard</h4><p>R, Shiny - Visualized referee travel and game stats for performance insights.</p></div>
-    </div>
-    <h3>Personal Projects</h3>
-    <div class="project-grid">
-      <div class="card"><h4>NFL 4th Down Analysis</h4><p>Python, Stats - Optimized coaching decisions based on expected value.</p></div>
-      <div class="card"><h4>Audi Price Prediction</h4><p>R, Regression - Modeled used car prices for resale decisions.</p></div>
-      <div class="card"><h4>TSA Claims</h4><p>Python, Pandas - Analyzed travel incident claims across U.S. airports.</p></div>
-      <div class="card"><h4>RFM Segmentation</h4><p>SQL, Excel - Identified loyal customers for AdventureWorks CRM program.</p></div>
-      <div class="card"><h4>Smoothie Optimization</h4><p>Excel Solver - Minimized cost while meeting nutrition targets.</p></div>
-    </div>
-  </section>
+.hero-text h1 {
+  font-size: 3rem;
+  margin: 0;
+}
 
-  <!-- Certifications Section -->
-  <section class="certifications">
-    <h2>Certifications</h2>
-    <div class="certs">
-      <span>Google Analytics</span>
-      <span>SQL for Data Science</span>
-      <span>Data Visualization with Tableau</span>
-      <span>Certified Scrum Product Owner (CSPO)</span>
-    </div>
-  </section>
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
 
-  <!-- Contact Section / Footer -->
-  <footer class="contact">
-    <h2>Let's Connect</h2>
-    <ul>
-      <li>Email: satkarkarki@email.com</li>
-      <li><a href="https://linkedin.com/in/satkarkarki">LinkedIn</a></li>
-      <li><a href="https://github.com/satkarkarki">GitHub</a></li>
-      <li><a href="https://medium.com/@satkarkarki">Medium</a></li>
-    </ul>
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </footer>
-</body>
-</html>
+.cta-buttons .btn {
+  padding: 0.6rem 1.2rem;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  color: #000000;
+  margin-right: 0.8rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.hero-image img {
+  max-width: 200px;
+  border-radius: 10px;
+}
+
+/* About Section */
+.about {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 10%;
+  border-bottom: 1px solid #eee;
+}
+
+.about-text {
+  flex: 2;
+  padding-right: 2rem;
+}
+
+.about-info {
+  flex: 1;
+  text-align: center;
+}
+
+.about-info img {
+  max-width: 120px;
+  border-radius: 10px;
+}
+
+.about-info ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Projects */
+.projects {
+  padding: 3rem 10%;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #fffaf4;
+  transition: 0.2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Certifications */
+.certifications {
+  padding: 3rem 10%;
+  background-color: #f5f0e6;
+}
+
+.certs span {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin: 0.4rem;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+.contact {
+  padding: 3rem 10%;
+  background-color: #ffffff;
+  border-top: 1px solid #eee;
+}
+
+.contact ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.contact a {
+  text-decoration: none;
+  color: #000;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background-color: #000;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
