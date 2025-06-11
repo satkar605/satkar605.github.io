@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NCAA Referee Dashboard | Satkar Karki</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <section class="project-detail">
+    <h1>From Website to Dashboard: NCAA Referee Travel & Workload Analysis</h1>
+    <p><strong>Goal:</strong> Explore whether referee travel distance influences officiating behavior during NCAA Division I Men’s Basketball games.</p>
+
+    <h2>Problem Statement</h2>
+    <p>March Madness brings excitement—but is it always fair? I explored whether referee travel distance impacts foul calls. To answer that, I had to build the entire data pipeline from scratch, beginning with zero structured access.</p>
+
+    <h2>Building the Dataset</h2>
+    <p>The official stats.ncaa.org site has no API—just static HTML pages. Every game ID had to be scraped manually by navigating through dated URLs. I created a system to automate daily scraping across the 2024–25 season, extracting team matchups, venues, and referee assignments. Each row of the final dataset became a fully contextualized game entry.</p>
+
+    <ul>
+      <li><strong>Games indexed:</strong> 5,922</li>
+      <li><strong>Columns:</strong> 34 features including venue, foul types, referees</li>
+      <li><strong>Referees tracked:</strong> 778</li>
+    </ul>
+
+    <!-- Screenshot placeholder -->
+    <div class="image-placeholder">[Insert scraping strategy image here]</div>
+
+    <h2>Mapping Referee Travel</h2>
+    <p>I used OpenStreetMap’s Nominatim geocoder to convert venue names into coordinates, then calculated straight-line (great-circle) distances between consecutive game locations for each referee. This allowed me to estimate total travel mileage, venue diversity, and rest windows across the season.</p>
+
+    <ul>
+      <li><strong>Top traveler:</st
 
