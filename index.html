@@ -1,135 +1,190 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Satkar Karki | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-</head>
-<body>
+/* Base styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  color: #111;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Satkar Karki</h1>
-      <p>Business Analyst · Product Thinker · Storytelling with Data</p>
-      <div class="cta-buttons">
-        <a href="assets/Satkar_Karki_Resume.pdf" class="btn" target="_blank">Download Resume</a>
-        <a href="https://linkedin.com/in/ksatkar" class="btn">LinkedIn</a>
-        <a href="https://github.com/satkar605" class="btn">GitHub</a>
-        <a href="mailto:karkisatkarhere@gmail.com" class="btn">Email Me</a>
-      </div>
-    </div>
-    <div class="hero-image">
-      <img src="assets/headshot.png" alt="Satkar Karki Headshot" />
-    </div>
-  </section>
+h1, h2, h3, h4 {
+  font-weight: 700;
+  color: #000;
+}
 
-  <!-- About Me Section -->
-  <section class="about">
-    <div class="about-text">
-      <h2>About Me</h2>
-      <p>
-        I am a business analyst with a passion for uncovering insights and crafting data-driven solutions that drive business success.
-        Currently pursuing an M.S. in Business Analytics, I thrive on solving complex problems and making strategic decisions.
-      </p>
-    </div>
-  </section>
+h1 {
+  font-size: 2.4rem;
+  margin-top: 2rem;
+}
 
-<!-- Projects Section -->
-<section class="projects">
-  <h2>Projects</h2>
+h2 {
+  font-size: 1.6rem;
+  margin-top: 2rem;
+}
 
-  <h3>Stakeholder Projects</h3>
-  <div class="project-grid">
-    <a href="egg-forecasting.html" class="card">
-      <h4>Egg Price Forecasting</h4>
-      <p>Forecasted egg price fluctuations for Mister Smith’s Bakery to secure cost-effective supplier contracts and avoid price shocks for customers.</p>
-      <small>(Tech Stack: R, Time Series Forecasting)</small>
-    </a>
-    <a href="canyon-ranch.html" class="card">
-      <h4>Canyon Ranch Data Warehouse</h4>
-      <p>Engineered a centralized reservation tracking system for Canyon Ranch resorts, improving service responsiveness and replacing outdated data systems.</p>
-      <small>(Tech Stack: SQL Server, ERDPlus, Snowflake Schema)</small>
-    </a>
-    <a href="doordash-prediction.html" class="card">
-      <h4>DoorDash Delivery Time Prediction</h4>
-      <p>Built a machine learning model to predict delivery times based on traffic and order flow, helping DoorDash improve ETA accuracy and customer satisfaction.</p>
-      <small>(Tech Stack: Python, Machine Learning)</small>
-    </a>
-    <a href="ncaa-dashboard.html" class="card">
-      <h4>NCAA Referee Dashboard</h4>
-      <p>Scraped and structured NCAA game data into a relational database, then developed an interactive dashboard to optimize referee scheduling and performance insights.</p>
-      <small>(Tech Stack: Python, SQL Server, R, Shiny)</small>
-    </a>
-  </div>
+h3 {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+}
 
-  <h3>Personal Projects</h3>
-  <div class="project-grid">
-    <div class="card">
-      <h4>NFL 4th Down Analysis</h4>
-      <p>Used statistical modeling in SAS Studio to evaluate 4th down decision-making and optimize team strategy in high-pressure game scenarios.</p>
-      <small>(Tech Stack: SAS Studio)</small>
-    </div>
-    <div class="card">
-      <h4>Audi Price Prediction</h4>
-      <p>Trained a regression model to predict used Audi prices based on model year, mileage, and engine specs to support buyer pricing decisions.</p>
-      <small>(Tech Stack: R, Regression Modeling)</small>
-    </div>
-    <div class="card">
-      <h4>TSA Claims Analysis</h4>
-      <p>Analyzed TSA passenger claims data to uncover trends in baggage handling incidents and improve transparency in travel operations.</p>
-      <small>(Tech Stack: Python, Pandas)</small>
-    </div>
-    <div class="card">
-      <h4>RFM Segmentation – AdventureWorks</h4>
-      <p>Performed Recency-Frequency-Monetary segmentation to identify high-value customers and design a loyalty strategy for AdventureWorks.</p>
-      <small>(Tech Stack: SQL, Excel)</small>
-    </div>
-    <div class="card">
-      <h4>Smoothie Optimization</h4>
-      <p>Designed a Solver-based optimization model to minimize smoothie production costs while meeting nutritional targets.</p>
-      <small>(Tech Stack: Excel Solver)</small>
-    </div>
-  </div>
-</section>
+/* Hero section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 10%;
+  background-color: #f5f0e6;
+}
 
+.hero-text h1 {
+  font-size: 3rem;
+  margin: 0;
+}
 
-  <!-- Certifications Section -->
-  <section class="certifications">
-    <h2>Certifications</h2>
-    <div class="certs">
-      <span>Google Analytics</span>
-      <span>SQL for Data Science</span>
-      <span>Data Visualization with Tableau</span>
-      <span>Certified Scrum Product Owner (CSPO)</span>
-    </div>
-  </section>
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
 
-  <!-- Placeholder for Future Education Section -->
-  <!--
-  <section class="education">
-    <h2>Education</h2>
-    <p>Coming soon...</p>
-  </section>
-  -->
+.cta-buttons .btn {
+  padding: 0.6rem 1.2rem;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  color: #000000;
+  margin-right: 0.8rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
 
-  <!-- Contact Section / Footer -->
-  <footer class="contact">
-    <h2>Let's Connect</h2>
-    <ul>
-      <li><a href="https://linkedin.com/in/satkarkarki">LinkedIn</a></li>
-      <li><a href="https://github.com/satkarkarki">GitHub</a></li>
-      <li><a href="https://medium.com/@satkarkarki">Medium</a></li>
-    </ul>
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </footer>
+.cta-buttons .btn:hover {
+  background-color: #f5f0e6;
+}
 
-</body>
-</html>
+.hero-image img {
+  max-width: 200px;
+  border-radius: 10px;
+}
+
+/* Sections (for write-up pages) */
+.project-detail {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.section {
+  background-color: #f9f6f2;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.highlight-box {
+  background-color: #fffaf4;
+  border-left: 5px solid #b89e7d;
+  padding: 1rem 1.2rem;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+}
+
+.image-placeholder {
+  background-color: #eee;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+/* Project cards */
+.projects {
+  padding: 3rem 10%;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #fffaf4;
+  transition: 0.2s ease-in-out;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Certifications */
+.certifications {
+  padding: 3rem 10%;
+  background-color: #f5f0e6;
+}
+
+.certs span {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin: 0.4rem;
+  font-size: 0.9rem;
+}
+
+/* Footer / Contact */
+.contact {
+  padding: 3rem 10%;
+  background-color: #ffffff;
+  border-top: 1px solid #eee;
+}
+
+.contact ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.contact a {
+  text-decoration: none;
+  color: #000;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background-color: #000;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Universal link style override inside cards/sections */
+.card a,
+.section a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.card a:hover,
+.section a:hover {
+  text-decoration: underline;
+}
