@@ -8,6 +8,17 @@ body {
   line-height: 1.6;
 }
 
+/* Universal Anchor Reset */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #000000;
+}
+
 /* Headings */
 h1, h2, h3, h4 {
   font-weight: 700;
@@ -92,16 +103,8 @@ h1, h2, h3, h4 {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Remove underline & color on links in cards */
 .card a {
-  text-decoration: none;
-  color: inherit;
   font-weight: 500;
-}
-
-.card a:hover {
-  color: #000000;
-  text-decoration: underline;
 }
 
 /* Certifications Section */
@@ -134,12 +137,12 @@ h1, h2, h3, h4 {
 }
 
 .contact a {
-  text-decoration: none;
-  color: #000;
+  font-weight: 500;
 }
 
 .contact a:hover {
   text-decoration: underline;
+  color: #000000;
 }
 
 form input,
