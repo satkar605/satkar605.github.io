@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Canyon Ranch Database | Satkar Karki</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <section class="project-detail">
+    <h1>Canyon Ranch Database Project</h1>
+    <p><strong>Client:</strong> Canyon Ranch Wellness Resorts</p>
+
+    <p><strong>Overview:</strong> Designed and deployed a centralized relational and dimensional data system for Canyon Ranch to replace fragmented legacy software. The goal was to improve operational coordination, reservation handling, and department-level reporting.</p>
+
+    <h2>Project Objectives</h2>
+    <ul>
+      <li>Eliminate reconciliation across multiple disconnected systems</li>
+      <li>Enable referral tracking from website, affiliates, and guests</li>
+      <li>Capture feedback tied to specific services and staff</li>
+      <li>Provide reporting visibility by department and time period</li>
+    </ul>
+
+    <h2>Solution Design</h2>
+    <p><strong>Operational Database (OLTP):</strong> A fully normalized SQL Server schema was built to support transactional integrity. It covered guests, reservations, services, staff, rooms, referrals, and feedback.</p>
+
+    <p><strong>Data Warehouse (OLAP):</strong> A snowflake schema supported trend analysis and reporting across service categories, booking channels, and satisfaction scores. Dimensions included date, customer, service, and service type.</p>
+
+    <p><strong>ETL/ELT Pipelines:</strong> Structured loading and in-database transformations computed booking volume, average ratings, and usage metrics directly within the warehouse model.</p>
+
+    <h2>Key Insights</h2>
+    <ul>
+      <li><strong>Referral Source ROI:</strong> Affiliate referrals produced the highest revenue per guest, though least used. Website referrals brought volume but lower spend per booking.</li>
+      <li><strong>Service Trends:</strong> Spa services dominated bookings, with Q2 and weekends showing spikes. Fitness and coaching showed room for growth during off-peak times.</li>
+      <li><strong>Feedback Analytics:</strong> Spa services scored highest in satisfaction, while nutrition/coaching feedback varied by staff — highlighting staff-level training needs.</li>
+      <li><strong>Department Visibility:</strong> The warehouse enabled real-time trend slicing by service type, guest segment, and referral source, supporting targeted marketing and scheduling decisions.</li>
+    </ul>
+
+    <h2>Assumptions & Caveats</h2>
+    <ul>
+      <li>All data used was synthetically generated to reflect realistic logic</li>
+      <li>Modeled sensitive data types, assuming consent and regulatory compliance (HIPAA)</li>
+      <li>Design assumes security features (encryption, access controls) would be implemented in production</li>
+    </ul>
+
+    <h2>Tech Stack</h2>
+    <ul>
+      <li>MS SQL Server</li>
+      <li>Cursor IDE</li>
+      <li>ERDPlus</li>
+      <li>Markdown / Word (docs)</li>
+      <li>GPT-4 (sample data generation)</li>
+    </ul>
+
+    <div class="project-links">
+      <a href="https://github.com/satkar605/canyon-ranch" target="_blank" class="btn">View GitHub Repo</a>
+      <a href="index.html" class="btn">← Back to Home</a>
+    </div>
+  </section>
+
+</body>
+</html>
 
