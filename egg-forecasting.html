@@ -5,48 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Egg Price Forecasting | Satkar Karki</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-
-  <section class="project-detail">
+  <div class="project-detail">
     <h1>Forecasting Volatile Egg Prices for Procurement Planning</h1>
-    <p><strong>Client:</strong> Mister Smith’s Bakery – Vermillion, SD</p>
 
-    <p><strong>Overview:</strong> This project built a time-series forecasting model using 30 years of egg price data to help a local bakery anticipate cost swings. The goal was to reduce price-related disruptions, optimize ordering, and guide supplier negotiations through forward-looking insights.</p>
+    <p>
+      This project uses time-series forecasting to help Mister Smith’s, a local bakery in Vermillion, SD, manage the impact of volatile egg prices. After a sudden spike forced a $0.50 surcharge on egg-based dishes, the bakery needed a way to anticipate future price changes. By analyzing 30 years of monthly U.S. egg price data, the model delivers forward-looking insights to support better cost planning, supplier negotiations, and pricing decisions.
+    </p>
 
     <h2>Business Challenge</h2>
-    <p>Mister Smith’s bakery experienced a sudden price spike in late 2024, which led to a $0.50 surcharge on egg-based dishes. This eroded customer trust and created operational instability. Without visibility into future prices, the business was left reactive. This project aimed to change that by enabling proactive pricing and procurement strategy.</p>
+    <p>
+      Mister Smith’s relies heavily on egg-based ingredients. In late 2024, a price spike forced the bakery to apply a $0.50 surcharge on egg items. This triggered customer backlash and hurt margins. The bakery lacked visibility into upcoming price trends. It needed a way to forecast prices ahead of time and build inventory or pricing strategies proactively.
+    </p>
 
     <h2>Key Business Questions</h2>
     <ul>
-      <li>What will egg prices look like over the next 12 months?</li>
-      <li>When are seasonal price spikes most likely?</li>
-      <li>How wide is the forecast range, and how should we plan around it?</li>
-      <li>Is the model reliable enough to guide budgeting?</li>
+      <li><strong>What will egg prices look like over the next 12 months?</strong></li>
+      <li><strong>When are prices most likely to spike?</strong></li>
+      <li><strong>What is the forecast range, and how can we plan for volatility?</strong></li>
+      <li><strong>Can the model support budgeting and supplier planning?</strong></li>
     </ul>
 
     <h2>Data Summary</h2>
-    <p>The model draws on publicly available data from the Federal Reserve (FRED), using:</p>
+    <p>
+      Data was sourced from FRED (Federal Reserve Economic Data) using:
+    </p>
     <ul>
-      <li><strong>Nominal Egg Prices:</strong> Monthly U.S. city average per dozen (Grade A, Large)</li>
-      <li><strong>Egg-Specific CPI:</strong> Used to inflation-adjust historical prices</li>
+      <li><strong>Nominal Egg Prices</strong>: Monthly U.S. city average (Grade A, Large)</li>
+      <li><strong>Egg-Specific CPI</strong>: Used to inflation-adjust historical prices</li>
     </ul>
-    <p>This produced an inflation-adjusted time series covering Jan 1995 – Jan 2025 with no missing values, ideal for long-term forecasting.</p>
+    <p>
+      The resulting dataset covers Jan 1995 to Jan 2025 — 360+ monthly records with no missing values.
+    </p>
 
-    <!-- Visual Placeholder -->
-    <div class="image-placeholder">[Insert train-validation-split image here]</div>
+    <div class="image-placeholder">
+      <img src="assets/train_validation_split.png" alt="Train-validation split chart" style="max-width:100%;" />
+    </div>
 
     <h2>Analytical Approach</h2>
-    <p>The data was decomposed into trend, seasonality, and noise to assess structural shifts. A rolling validation approach compared:</p>
+    <p>The model tested three forecasting approaches:</p>
     <ul>
-      <li>Naïve model</li>
+      <li>Naïve Model</li>
       <li>Exponential Smoothing (ETS)</li>
-      <li>ARIMA – selected for final deployment</li>
+      <li><strong>ARIMA</strong> – selected for final deployment</li>
     </ul>
-    <p>ARIMA outperformed others in forecasting 2024 test data. Though volatility remained high, it best balanced accuracy and explainability.</p>
+    <p>
+      ARIMA outperformed others on 2024 holdout data. It offered the best balance of accuracy and interpretability under recent volatility.
+    </p>
 
-    <!-- Visual Placeholder -->
-    <div class="image-placeholder">[Insert decomposition_plot image here]</div>
+    <div class="image-placeholder">
+      <img src="assets/decomposition_plot.png" alt="Time series decomposition chart" style="max-width:100%;" />
+    </div>
 
     <h2>Key Findings</h2>
     <ul>
@@ -55,37 +66,33 @@
       <li><strong>ARIMA was most reliable:</strong> Despite noise, it offered the best generalizable performance.</li>
     </ul>
 
-    <!-- Visual Placeholder -->
-    <div class="image-placeholder">[Insert seasonal_box_plot and full_egg_price_timeline images here]</div>
+    <div class="image-placeholder">
+      <img src="assets/seasonal_box_plot.png" alt="Seasonal boxplot of egg prices" style="max-width:100%;" />
+    </div>
+
+    <div class="image-placeholder">
+      <img src="assets/full_forecast.png" alt="Full egg price forecast timeline" style="max-width:100%;" />
+    </div>
 
     <h2>Business Recommendations</h2>
     <ul>
-      <li><strong>Order early:</strong> Buy in Q4 ahead of expected winter spikes to avoid $0.80–$1.20/dozen cost jumps.</li>
-      <li><strong>Use $3.40 as a planning anchor:</strong> Forecast stabilizes near this value through 2026.</li>
-      <li><strong>Plan using forecast bands:</strong>
-        <ul>
-          <li>If prices drop below $3.00 → lock contracts</li>
-          <li>If prices rise above $4.50 → adjust inventory or pricing early</li>
-        </ul>
-      </li>
-      <li><strong>Minimize abrupt surcharges:</strong> Use forecast to phase-in pricing decisions and preserve customer loyalty.</li>
+      <li>Order early for Q4–Q1 to avoid spikes: plan bulk egg purchases in advance</li>
+      <li>Use $3.40/dozen as a budgeting anchor for 2025–26</li>
+      <li>If prices dip below $3.00, secure fixed-rate supply contracts</li>
+      <li>If prices approach $4.50, prepare menu adjustments to protect margins</li>
     </ul>
 
     <h2>Assumptions & Limitations</h2>
     <ul>
-      <li>Only internal historical price data was used — no external predictors (e.g., disease, transportation).</li>
-      <li>Stationarity test suggested differencing, but best ARIMA model did not apply it (ARIMA(4,0,0)(2,0,0)[12]).</li>
-      <li>Forecast assumes past patterns will repeat — unexpected shocks reduce accuracy.</li>
+      <li>No external predictors (e.g., feed or fuel costs) were included</li>
+      <li>Forecast assumes past trends continue — unexpected shocks may reduce accuracy</li>
+      <li>Model selected by cross-validation: ARIMA(4,0,0)(2,0,0)[12] without differencing</li>
     </ul>
 
-    <h2>Presentation</h2>
-    <p><a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">Watch project walkthrough on YouTube</a></p>
-
-    <div class="project-links">
+    <div style="margin-top: 2rem;">
       <a href="https://github.com/satkar605/egg-price-forecasting" target="_blank" class="btn">View GitHub Repo</a>
       <a href="index.html" class="btn">← Back to Home</a>
     </div>
-  </section>
-
+  </div>
 </body>
 </html>
