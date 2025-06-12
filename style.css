@@ -8,19 +8,15 @@ body {
   line-height: 1.6;
 }
 
-/* Universal Anchor Reset */
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-a:visited {
+/* Reset link styles globally */
+a,
+a:visited,
+a:active {
   color: inherit;
   text-decoration: none;
 }
 
-a:hover,
-a:focus {
+a:hover {
   color: #000000;
   text-decoration: underline;
 }
@@ -33,11 +29,12 @@ h1, h2, h3, h4 {
 
 /* Hero Section */
 .hero {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   align-items: center;
   padding: 4rem 10%;
   background-color: #f5f0e6;
+  gap: 2rem;
 }
 
 .hero-text h1 {
@@ -50,6 +47,10 @@ h1, h2, h3, h4 {
   margin-bottom: 1.5rem;
 }
 
+.cta-buttons {
+  margin-top: 1rem;
+}
+
 .cta-buttons .btn {
   padding: 0.6rem 1.2rem;
   background-color: #ffffff;
@@ -58,7 +59,7 @@ h1, h2, h3, h4 {
   margin-right: 0.8rem;
   font-weight: 600;
   display: inline-block;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .cta-buttons .btn:hover {
@@ -68,9 +69,13 @@ h1, h2, h3, h4 {
 
 /* Hero Image */
 .hero-image img {
-  max-width: 200px;
-  border-radius: 100px;
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
   border: 3px solid #000000;
+  display: block;
+  margin-left: auto;
 }
 
 /* About Section */
@@ -104,23 +109,15 @@ h1, h2, h3, h4 {
   padding: 1.2rem;
   border-radius: 10px;
   transition: box-shadow 0.2s ease-in-out;
-  color: #000000;
 }
 
 .card:hover {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.card a {
-  font-weight: 500;
-  color: inherit;
-  text-decoration: none;
-}
-
-.card a:hover,
-.card a:focus {
-  color: #000000;
-  text-decoration: underline;
+.card h4 {
+  font-weight: 700;
+  margin-bottom: 0.6rem;
 }
 
 /* Certifications Section */
@@ -154,12 +151,9 @@ h1, h2, h3, h4 {
 
 .contact a {
   font-weight: 500;
-  color: #000000;
-  text-decoration: none;
 }
 
-.contact a:hover,
-.contact a:focus {
+.contact a:hover {
   text-decoration: underline;
 }
 
@@ -193,11 +187,11 @@ img.responsive {
 /* Responsive Tweaks */
 @media (max-width: 768px) {
   .hero {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     text-align: center;
   }
 
-  .hero-image {
-    margin-top: 2rem;
+  .hero-image img {
+    margin: 0 auto;
   }
 }
