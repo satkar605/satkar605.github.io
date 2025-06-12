@@ -73,10 +73,12 @@ h1, h2, h3, h4 {
   background-color: #ffffff;
 }
 
-.about-text {
-  max-width: 800px;
-  margin: 0 auto;
+.about-text p {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
 }
+
 
 /* Projects Section */
 .projects {
