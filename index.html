@@ -2,99 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Satkar Karki | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-text">
+  <!-- Hero + About Section -->
+  <section class="intro">
+    <div class="intro-left">
+      <img src="assets/headshot.png" alt="Satkar Karki Headshot" class="intro-photo" />
       <h1>Satkar Karki</h1>
       <p>Business Analyst · Product Thinker · Storytelling with Data</p>
       <div class="cta-buttons">
-        <a href="assets/Satkar_Karki_Resume.pdf" class="btn" target="_blank">Download Resume</a>
+        <a href="assets/Satkar_Karki_Resume.pdf" class="btn" target="_blank">Resume</a>
         <a href="https://linkedin.com/in/ksatkar" class="btn">LinkedIn</a>
         <a href="https://github.com/satkar605" class="btn">GitHub</a>
-        <a href="mailto:karkisatkarhere@gmail.com" class="btn">Email Me</a>
+        <a href="mailto:karkisatkarhere@gmail.com" class="btn">Email</a>
       </div>
     </div>
-    <div class="hero-image">
-      <img src="assets/headshot.png" alt="Satkar Karki Headshot" />
-    </div>
-  </section>
 
-  <!-- About Me Section -->
-  <section class="about">
-    <div class="about-text">
+    <div class="intro-right">
       <h2>About Me</h2>
-      <p>
-        I am a business analyst with a passion for uncovering insights and crafting data-driven solutions that drive business success.
-        Currently pursuing an M.S. in Business Analytics, I thrive on solving complex problems and making strategic decisions.
-      </p>
+      <p>I'm the analyst who asks <strong>"why" five times</strong> and won't stop until complex problems become clear, actionable solutions. My journey into analytics began through <strong>entrepreneurship</strong>: co-founding a music streaming platform taught me that behind every business decision is a story the data can tell.</p>
+      <p>I am currently pursuing my <strong>M.S. in Business Analytics</strong> at the University of South Dakota, where I also serve as <strong>President of the USD Business Analytics Club</strong>. Under my leadership, the club has grown to over 40 members and partnered with local businesses to develop practical data-driven solutions. In a recent forecasting project, I helped a bakery secure more favorable supplier contracts, allowing them to maintain pricing without passing increased costs to customers.</p>
+      <p>My unique combination of entrepreneurial experience, technical expertise across <strong>R, Python</strong>, and visualization tools, and exceptional communication skills allows me to translate complex analytical findings into compelling business narratives. Whether presenting to executives or teaching fellow students, I excel at making the technical accessible and the complex simple.</p>
+      <p>I'm seeking <strong>entry-level business analyst or analytics engineering roles</strong> where I can apply my evidence-based approach to solve meaningful problems in supply chain, marketing intelligence, or product analytics—with the ultimate goal of leading analytical teams that drive strategic business decisions.</p>
     </div>
   </section>
 
-<!-- Projects Section -->
-<section class="projects">
-  <h2>Projects</h2>
+  <!-- Projects Section -->
+  <section class="projects">
+    <h2>Projects</h2>
 
-  <h3>Stakeholder Projects</h3>
-  <div class="project-grid">
-    <a href="egg-forecasting.html" class="card">
-      <h4>Egg Price Forecasting</h4>
-      <p>Forecasted egg price fluctuations for Mister Smith’s Bakery to secure cost-effective supplier contracts and avoid price shocks for customers.</p>
-      <small>(Tech Stack: R, Time Series Forecasting)</small>
-    </a>
-    <a href="canyon-ranch.html" class="card">
-      <h4>Canyon Ranch Data Warehouse</h4>
-      <p>Engineered a centralized reservation tracking system for Canyon Ranch resorts, improving service responsiveness and replacing outdated data systems.</p>
-      <small>(Tech Stack: SQL Server, ERDPlus, Snowflake Schema)</small>
-    </a>
-    <a href="doordash-prediction.html" class="card">
-      <h4>DoorDash Delivery Time Prediction</h4>
-      <p>Built a machine learning model to predict delivery times based on traffic and order flow, helping DoorDash improve ETA accuracy and customer satisfaction.</p>
-      <small>(Tech Stack: Python, Machine Learning)</small>
-    </a>
-    <a href="ncaa-dashboard.html" class="card">
-      <h4>NCAA Referee Dashboard</h4>
-      <p>Scraped and structured NCAA game data into a relational database, then developed an interactive dashboard to optimize referee scheduling and performance insights.</p>
-      <small>(Tech Stack: Python, SQL Server, R, Shiny)</small>
-    </a>
-  </div>
+    <h3>Stakeholder Projects</h3>
+    <div class="project-grid">
+      <a href="egg-forecasting.html" class="card">
+        <h4>Egg Price Forecasting</h4>
+        <p>Forecasted egg price fluctuations for Mister Smith’s Bakery to secure cost-effective supplier contracts and avoid price shocks for customers.</p>
+        <small>(Tech Stack: R, Time Series Forecasting)</small>
+      </a>
+      <a href="canyon-ranch.html" class="card">
+        <h4>Canyon Ranch Data Warehouse</h4>
+        <p>Engineered a centralized reservation tracking system for Canyon Ranch resorts, improving service responsiveness and replacing outdated data systems.</p>
+        <small>(Tech Stack: SQL Server, ERDPlus, Snowflake Schema)</small>
+      </a>
+      <a href="doordash-prediction.html" class="card">
+        <h4>DoorDash Delivery Time Prediction</h4>
+        <p>Built a machine learning model to predict delivery times based on traffic and order flow, helping DoorDash improve ETA accuracy and customer satisfaction.</p>
+        <small>(Tech Stack: Python, Machine Learning)</small>
+      </a>
+      <a href="ncaa-dashboard.html" class="card">
+        <h4>NCAA Referee Dashboard</h4>
+        <p>Scraped and structured NCAA game data into a relational database, then developed an interactive dashboard to optimize referee scheduling and performance insights.</p>
+        <small>(Tech Stack: Python, SQL Server, R, Shiny)</small>
+      </a>
+    </div>
 
-  <h3>Personal Projects</h3>
-  <div class="project-grid">
-    <div class="card">
-      <h4>NFL 4th Down Analysis</h4>
-      <p>Used statistical modeling in SAS Studio to evaluate 4th down decision-making and optimize team strategy in high-pressure game scenarios.</p>
-      <small>(Tech Stack: SAS Studio)</small>
+    <h3>Personal Projects</h3>
+    <div class="project-grid">
+      <div class="card">
+        <h4>NFL 4th Down Analysis</h4>
+        <p>Used statistical modeling in SAS Studio to evaluate 4th down decision-making and optimize team strategy in high-pressure game scenarios.</p>
+        <small>(Tech Stack: SAS Studio)</small>
+      </div>
+      <div class="card">
+        <h4>Audi Price Prediction</h4>
+        <p>Trained a regression model to predict used Audi prices based on model year, mileage, and engine specs to support buyer pricing decisions.</p>
+        <small>(Tech Stack: R, Regression Modeling)</small>
+      </div>
+      <div class="card">
+        <h4>TSA Claims Analysis</h4>
+        <p>Analyzed TSA passenger claims data to uncover trends in baggage handling incidents and improve transparency in travel operations.</p>
+        <small>(Tech Stack: Python, Pandas)</small>
+      </div>
+      <div class="card">
+        <h4>RFM Segmentation – AdventureWorks</h4>
+        <p>Performed Recency-Frequency-Monetary segmentation to identify high-value customers and design a loyalty strategy for AdventureWorks.</p>
+        <small>(Tech Stack: SQL, Excel)</small>
+      </div>
+      <div class="card">
+        <h4>Smoothie Optimization</h4>
+        <p>Designed a Solver-based optimization model to minimize smoothie production costs while meeting nutritional targets.</p>
+        <small>(Tech Stack: Excel Solver)</small>
+      </div>
     </div>
-    <div class="card">
-      <h4>Audi Price Prediction</h4>
-      <p>Trained a regression model to predict used Audi prices based on model year, mileage, and engine specs to support buyer pricing decisions.</p>
-      <small>(Tech Stack: R, Regression Modeling)</small>
-    </div>
-    <div class="card">
-      <h4>TSA Claims Analysis</h4>
-      <p>Analyzed TSA passenger claims data to uncover trends in baggage handling incidents and improve transparency in travel operations.</p>
-      <small>(Tech Stack: Python, Pandas)</small>
-    </div>
-    <div class="card">
-      <h4>RFM Segmentation – AdventureWorks</h4>
-      <p>Performed Recency-Frequency-Monetary segmentation to identify high-value customers and design a loyalty strategy for AdventureWorks.</p>
-      <small>(Tech Stack: SQL, Excel)</small>
-    </div>
-    <div class="card">
-      <h4>Smoothie Optimization</h4>
-      <p>Designed a Solver-based optimization model to minimize smoothie production costs while meeting nutritional targets.</p>
-      <small>(Tech Stack: Excel Solver)</small>
-    </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- Certifications Section -->
   <section class="certifications">
@@ -106,14 +100,6 @@
       <span>Certified Scrum Product Owner (CSPO)</span>
     </div>
   </section>
-
-  <!-- Placeholder for Future Education Section -->
-  <!--
-  <section class="education">
-    <h2>Education</h2>
-    <p>Coming soon...</p>
-  </section>
-  -->
 
   <!-- Contact Section / Footer -->
   <footer class="contact">
