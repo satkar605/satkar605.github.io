@@ -6,6 +6,71 @@
   <title>Egg Price Forecasting | Satkar Karki</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .project-detail {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .project-detail h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section,
+    .highlight-box {
+      background-color: #fffaf4;
+      border: 1px solid #ddd;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0.8rem;
+    }
+
+    .section img {
+      display: block;
+      margin: 1.5rem auto 0;
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #000;
+      border-radius: 6px;
+      background: #fff;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      line-height: 1.8;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+  </style>
 </head>
 <body>
   <div class="project-detail">
@@ -18,9 +83,7 @@
 
     <div class="section">
       <h2>Business Challenge</h2>
-      <p>
-        Mister Smith’s relies heavily on egg-based ingredients. In late 2024, a price spike forced the bakery to apply a $0.50 surcharge on egg items. This triggered customer backlash and hurt margins. The bakery lacked visibility into upcoming price trends. It needed a way to forecast prices ahead of time and build inventory or pricing strategies proactively.
-      </p>
+      <p>Mister Smith’s relies heavily on egg-based ingredients. In late 2024, a price spike forced the bakery to apply a $0.50 surcharge on egg items. This triggered customer backlash and hurt margins. The bakery lacked visibility into upcoming price trends. It needed a way to forecast prices ahead of time and build inventory or pricing strategies proactively.</p>
     </div>
 
     <div class="section">
@@ -35,19 +98,13 @@
 
     <div class="section">
       <h2>Data Summary</h2>
-      <p>
-        Data was sourced from FRED (Federal Reserve Economic Data) using:
-      </p>
+      <p>Data was sourced from FRED (Federal Reserve Economic Data) using:</p>
       <ul>
         <li><strong>Nominal Egg Prices</strong>: Monthly U.S. city average (Grade A, Large)</li>
         <li><strong>Egg-Specific CPI</strong>: Used to inflation-adjust historical prices</li>
       </ul>
-      <p>
-        The resulting dataset covers Jan 1995 to Jan 2025 — 360+ monthly records with no missing values.
-      </p>
-      <div class="image-placeholder">
-        <img src="assets/train_validation_split.png" alt="Train-validation split chart" style="max-width:100%;" />
-      </div>
+      <p>The resulting dataset covers Jan 1995 to Jan 2025 — 360+ monthly records with no missing values.</p>
+      <img src="assets/train_validation_split.png" alt="Train-validation split chart" />
     </div>
 
     <div class="section">
@@ -58,12 +115,8 @@
         <li>Exponential Smoothing (ETS)</li>
         <li><strong>ARIMA</strong> – selected for final deployment</li>
       </ul>
-      <p>
-        ARIMA outperformed others on 2024 holdout data. It offered the best balance of accuracy and interpretability under recent volatility.
-      </p>
-      <div class="image-placeholder">
-        <img src="assets/decomposition_plot.png" alt="Time series decomposition chart" style="max-width:100%;" />
-      </div>
+      <p>ARIMA outperformed others on 2024 holdout data. It offered the best balance of accuracy and interpretability under recent volatility.</p>
+      <img src="assets/decomposition_plot.png" alt="Time series decomposition chart" />
     </div>
 
     <div class="section">
@@ -73,12 +126,8 @@
         <li><strong>Recent volatility breaks the pattern:</strong> Forecast error increased in late 2024, underscoring post-pandemic instability.</li>
         <li><strong>ARIMA was most reliable:</strong> Despite noise, it offered the best generalizable performance.</li>
       </ul>
-      <div class="image-placeholder">
-        <img src="assets/seasonal_box_plot.png" alt="Seasonal boxplot of egg prices" style="max-width:100%;" />
-      </div>
-      <div class="image-placeholder">
-        <img src="assets/full_forecast.png" alt="Full egg price forecast timeline" style="max-width:100%;" />
-      </div>
+      <img src="assets/seasonal_box_plot.png" alt="Seasonal boxplot of egg prices" />
+      <img src="assets/full_forecast.png" alt="Full egg price forecast timeline" />
     </div>
 
     <div class="section">
@@ -100,7 +149,7 @@
       </ul>
     </div>
 
-    <div class="section" style="text-align: center;">
+    <div class="section" style="text-align:center;">
       <a href="https://github.com/satkar605/egg-price-forecasting" target="_blank" class="btn">View GitHub Repo</a>
       <a href="index.html" class="btn">← Back to Home</a>
     </div>
