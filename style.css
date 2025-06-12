@@ -23,6 +23,12 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Prevent blue underline after click */
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* Headings */
 h1, h2, h3, h4 {
   font-weight: 700;
@@ -46,8 +52,8 @@ h4 {
   font-size: 1.1rem;
 }
 
-/* Layout: Header Grid */
-.header-grid {
+/* Intro Layout */
+.intro {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 2rem;
@@ -56,32 +62,25 @@ h4 {
   background-color: #f5f0e6;
 }
 
-/* Profile Column */
-.profile {
+.intro-left {
   text-align: center;
 }
 
-.profile-pic {
+.intro-photo {
   width: 150px;
   height: 150px;
-  border-radius: 100%;
+  border-radius: 50%;
   object-fit: cover;
   border: 3px solid #000000;
   margin-bottom: 1rem;
 }
 
-.subtitle {
-  font-weight: 400;
-  font-size: 1rem;
-  margin-top: -0.5rem;
-  margin-bottom: 1rem;
-}
-
-.cta-row {
+.cta-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.6rem;
+  margin-top: 1rem;
 }
 
 .btn {
@@ -100,12 +99,11 @@ h4 {
   color: #ffffff;
 }
 
-/* About Me Text */
-.about {
+.intro-right {
   font-size: 1rem;
 }
 
-.about p {
+.intro-right p {
   margin-bottom: 1.4rem;
   line-height: 1.75;
 }
@@ -139,9 +137,21 @@ h4 {
   margin-bottom: 0.6rem;
 }
 
-.card p {
+.card p,
+.card small {
   font-size: 0.95rem;
   color: #333333;
+}
+
+.card a,
+.card a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: none;
+  color: #000000;
 }
 
 /* Certifications Section */
@@ -165,18 +175,59 @@ h4 {
   font-size: 0.9rem;
 }
 
+/* Contact Section */
+.contact {
+  padding: 3rem 10%;
+  background-color: #ffffff;
+  border-top: 1px solid #eee;
+}
+
+.contact ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.contact a {
+  font-weight: 500;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+  color: #000000;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background-color: #000;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 /* Responsive Fix */
 @media (max-width: 768px) {
-  .header-grid {
+  .intro {
     grid-template-columns: 1fr;
     text-align: center;
   }
 
-  .about {
+  .intro-right {
     margin-top: 2rem;
   }
 
-  .cta-row {
+  .cta-buttons {
     justify-content: center;
   }
 }
