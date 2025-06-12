@@ -16,7 +16,29 @@
     .project-detail h1 {
       font-size: 2.2rem;
       text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .github-link {
+      text-align: center;
       margin-bottom: 2rem;
+    }
+
+    .github-link a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #000;
+      border-radius: 6px;
+      background: #fff;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .github-link a:hover {
+      background: #000;
+      color: #fff;
     }
 
     .section,
@@ -41,12 +63,10 @@
     }
 
     .btn {
-      display: inline-block;
-      margin: 0.5rem;
       padding: 0.6rem 1.2rem;
       border: 2px solid #000;
-      border-radius: 6px;
-      background: #fff;
+      background-color: #fff;
+      color: #000;
       font-weight: 600;
       text-align: center;
       transition: all 0.2s ease-in-out;
@@ -75,6 +95,10 @@
 <body>
   <div class="project-detail">
     <h1>Egg Price Forecasting</h1>
+
+    <div class="github-link">
+      <a href="https://github.com/satkar605/egg-price-forecasting" target="_blank">View GitHub Repo</a>
+    </div>
 
     <div class="highlight-box">
       <p><strong>Client:</strong> Mister Smith’s Bakery</p>
@@ -150,7 +174,6 @@
     </div>
 
     <div class="section" style="text-align:center;">
-      <a href="https://github.com/satkar605/egg-price-forecasting" target="_blank" class="btn">View GitHub Repo</a>
       <a href="index.html" class="btn">← Back to Home</a>
     </div>
   </div>
