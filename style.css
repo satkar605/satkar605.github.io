@@ -384,3 +384,84 @@ form button {
     text-align: left;
   }
 }
+
+.experience {
+  padding: 3rem 10%;
+  background-color: #fff;
+}
+
+.experience-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+}
+
+.experience-card {
+  background: #fffaf4;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  padding: 2.2rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+}
+
+.exp-header {
+  margin-bottom: 1.1rem;
+}
+
+.exp-org {
+  font-size: 1.13rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.1rem;
+}
+
+.exp-location {
+  font-weight: 400;
+  color: #888;
+  font-size: 1.01rem;
+}
+
+.exp-role {
+  font-weight: 600;
+  font-size: 1.07rem;
+  margin-bottom: 0.1rem;
+  color: #222;
+}
+
+.exp-date {
+  font-size: 0.99rem;
+  color: #aaa;
+  margin-bottom: 0.3rem;
+}
+
+.exp-bullets {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #333;
+  font-size: 1.01rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 1200px) {
+  .experience-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .experience-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .experience-card {
+    padding: 1.5rem 1rem;
+    max-width: 100%;
+  }
+}
