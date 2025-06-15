@@ -257,41 +257,47 @@ form button {
 .education-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 2.5rem;
   justify-content: flex-start;
   margin-top: 1.5rem;
 }
 
 .education-card {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   background: #fffaf4;
   border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 1.5rem 2rem;
-  min-width: 320px;
-  max-width: 500px;
-  flex: 1 1 340px;
+  border-radius: 16px;
+  padding: 2.2rem 2.4rem;
+  min-width: 340px;
+  max-width: 600px;
+  flex: 1 1 420px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-  gap: 1.5rem;
+  gap: 2.2rem;
+  margin-bottom: 0;
 }
 
 .education-logo-wrap {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  height: 64px;
+  justify-content: center;
+  height: 90px;
+  width: 110px;
 }
 
 .edu-logo {
-  height: 64px;
+  height: 70px;
   width: auto;
+  max-width: 100px;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 10px;
   background: #fff;
   border: 1px solid #eee;
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  padding: 4px;
+  padding: 6px;
+  display: block;
+  margin: 0 auto;
 }
 
 .education-info {
@@ -299,30 +305,34 @@ form button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
 }
 
 .education-info h3 {
   margin-bottom: 0.2rem;
-  font-size: 1.15rem;
+  font-size: 1.18rem;
+  font-weight: 700;
 }
 
 .degree {
   font-weight: 600;
   margin-bottom: 0.2rem;
   color: #222;
+  font-size: 1.05rem;
 }
 
 .edu-date {
-  font-size: 0.98rem;
+  font-size: 1rem;
   color: #888;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
 }
 
 .education-info ul {
   margin: 0;
   padding-left: 1.2rem;
-  font-size: 0.98rem;
+  font-size: 1.01rem;
   color: #333;
+  line-height: 1.7;
 }
 
 @media (max-width: 900px) {
@@ -334,21 +344,43 @@ form button {
     max-width: 100%;
     min-width: 0;
     flex-direction: row;
-    padding: 1.2rem 1rem;
+    padding: 1.5rem 1rem;
+    gap: 1.2rem;
+  }
+  .education-logo-wrap {
+    height: 64px;
+    width: 80px;
+  }
+  .edu-logo {
+    height: 48px;
+    max-width: 70px;
+    padding: 4px;
   }
 }
 
 @media (max-width: 600px) {
   .education-card {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
-    padding: 1rem 0.5rem;
+    padding: 1.1rem 0.5rem;
   }
   .education-logo-wrap {
     height: 48px;
+    width: 100%;
+    justify-content: center;
   }
   .edu-logo {
-    height: 48px;
+    height: 40px;
+    max-width: 60px;
+    margin-bottom: 0.5rem;
+  }
+  .education-info {
+    align-items: center;
+    text-align: center;
+  }
+  .education-info ul {
+    padding-left: 1.1rem;
+    text-align: left;
   }
 }
