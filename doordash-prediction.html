@@ -6,6 +6,7 @@
   <title>DoorDash Delivery Prediction | Satkar Karki</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <style>
     .project-detail {
       max-width: 800px;
@@ -90,6 +91,74 @@
       line-height: 1.75;
       margin-bottom: 1rem;
     }
+
+    /* PDF Viewer Styles */
+    .pdf-viewer {
+      background-color: #fffaf4;
+      border: 1px solid #ddd;
+      padding: 1.8rem;
+      margin: 2rem 0;
+      border-radius: 10px;
+    }
+
+    .pdf-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .pdf-controls button {
+      padding: 0.5rem 1rem;
+      border: 2px solid #000;
+      background: #fff;
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .pdf-controls button:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .pdf-controls button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .pdf-container {
+      width: 100%;
+      height: 600px;
+      overflow: hidden;
+      position: relative;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .pdf-page {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .pdf-page canvas {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .page-info {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
   </style>
 </head>
 <body>
@@ -164,6 +233,22 @@
     </div>
 
     <div class="section">
+      <h2>Project Presentation</h2>
+      <div class="pdf-viewer">
+        <div class="pdf-controls">
+          <button id="prevPage" disabled>Previous</button>
+          <button id="nextPage">Next</button>
+        </div>
+        <div class="pdf-container">
+          <div class="pdf-page" id="pdfPage"></div>
+        </div>
+        <div class="page-info">
+          <span id="pageNum"></span> / <span id="pageCount"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
       <h2>Key Findings</h2>
       <ul>
         <li><strong>Estimated ETA was the strongest predictor.</strong><br>
@@ -193,5 +278,82 @@
       <a href="index.html" class="btn">← Back to Home</a>
     </div>
   </div>
+
+  <script>
+    // Initialize PDF.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    let pdfDoc = null;
+    let pageNum = 1;
+    let pageRendering = false;
+    let pageNumPending = null;
+    const scale = 1.5;
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Load the PDF
+    pdfjsLib.getDocument('assets/doordash-delivery-time-slides.pdf').promise.then(function(pdf) {
+      pdfDoc = pdf;
+      document.getElementById('pageCount').textContent = pdf.numPages;
+      renderPage(pageNum);
+    });
+
+    function renderPage(num) {
+      pageRendering = true;
+      pdfDoc.getPage(num).then(function(page) {
+        const viewport = page.getViewport({scale: scale});
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+        const renderTask = page.render(renderContext);
+
+        renderTask.promise.then(function() {
+          pageRendering = false;
+          document.getElementById('pdfPage').appendChild(canvas);
+          document.getElementById('pageNum').textContent = num;
+
+          if (pageNumPending !== null) {
+            renderPage(pageNumPending);
+            pageNumPending = null;
+          }
+        });
+      });
+    }
+
+    function queueRenderPage(num) {
+      if (pageRendering) {
+        pageNumPending = num;
+      } else {
+        renderPage(num);
+      }
+    }
+
+    function onPrevPage() {
+      if (pageNum <= 1) {
+        return;
+      }
+      pageNum--;
+      queueRenderPage(pageNum);
+      document.getElementById('prevPage').disabled = pageNum <= 1;
+      document.getElementById('nextPage').disabled = pageNum >= pdfDoc.numPages;
+    }
+
+    function onNextPage() {
+      if (pageNum >= pdfDoc.numPages) {
+        return;
+      }
+      pageNum++;
+      queueRenderPage(pageNum);
+      document.getElementById('prevPage').disabled = pageNum <= 1;
+      document.getElementById('nextPage').disabled = pageNum >= pdfDoc.numPages;
+    }
+
+    document.getElementById('prevPage').addEventListener('click', onPrevPage);
+    document.getElementById('nextPage').addEventListener('click', onNextPage);
+  </script>
 </body>
 </html>
