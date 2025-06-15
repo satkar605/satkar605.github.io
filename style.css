@@ -566,3 +566,117 @@ form button {
     padding: 0 0.5rem;
   }
 }
+
+/* =====================
+   Medium Blog Section
+   ===================== */
+.medium-posts {
+  padding: 3rem 10%;
+  background: #fff;
+}
+.medium-posts h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.medium-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+}
+.medium-card {
+  display: flex;
+  align-items: center;
+  background: #fffaf4;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  padding: 1.2rem 1.5rem;
+  text-decoration: none;
+  color: #111;
+  font-family: 'Inter', sans-serif;
+  transition: box-shadow 0.18s, background 0.18s, opacity 0.18s;
+  min-width: 0;
+  min-height: 120px;
+  position: relative;
+}
+.medium-card:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  background: #f5f0e6;
+  opacity: 0.97;
+}
+.medium-card-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 1.2rem;
+}
+.medium-title {
+  font-weight: 700;
+  font-size: 1.08rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+  line-height: 1.3;
+}
+.medium-summary {
+  font-size: 0.98rem;
+  color: #444;
+  line-height: 1.5;
+}
+.medium-thumb {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  margin-left: 1.2rem;
+  flex-shrink: 0;
+}
+.medium-all-btn-wrap {
+  text-align: center;
+  margin-top: 2.2rem;
+}
+.medium-all-btn {
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: all 0.18s;
+}
+.medium-all-btn:hover {
+  background: #000;
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .medium-cards {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .medium-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 0.7rem;
+    min-height: 0;
+  }
+  .medium-card-content {
+    padding-right: 0;
+    margin-bottom: 0.7rem;
+  }
+  .medium-thumb {
+    margin-left: 0;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    max-width: 100%;
+  }
+}
