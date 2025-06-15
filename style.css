@@ -125,7 +125,7 @@ h4 {
   position: relative;
   background-color: #fffaf4;
   border: 1px solid #ddd;
-  padding: 1.2rem 1.2rem 2.2rem 1.2rem;
+  padding: 1.2rem 1.2rem 2.4rem 1.2rem;
   border-radius: 10px;
   transition: box-shadow 0.2s, background 0.2s;
   display: block;
@@ -182,7 +182,20 @@ h4 {
   bottom: 1.2rem;
   display: flex;
   align-items: flex-end;
-  gap: 6px;
+  gap: 8px;
+}
+
+.tool-icon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.85;
+  transition: opacity 0.18s;
+  object-fit: contain;
+  margin: 0;
+}
+
+.card:hover .tool-icon {
+  opacity: 1;
 }
 
 /* =====================
