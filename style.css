@@ -182,20 +182,18 @@ h4 {
   bottom: 1.2rem;
   display: flex;
   align-items: flex-end;
-  gap: 8px;
+  gap: 0;
 }
 
-.tool-icon {
-  width: 22px;
+/* Toolkit icon style for project cards (Stakeholder & Personal) */
+.tech-logos img {
   height: 22px;
-  opacity: 0.85;
-  transition: opacity 0.18s;
-  object-fit: contain;
-  margin: 0;
+  width: auto;
+  margin-right: 6px;
+  vertical-align: middle;
 }
-
-.card:hover .tool-icon {
-  opacity: 1;
+.tech-logos img:last-child {
+  margin-right: 0;
 }
 
 /* =====================
