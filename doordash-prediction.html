@@ -1,1 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DoorDash Delivery Prediction | Satkar Karki</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .project-detail {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
 
+    .project-detail h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .github-link {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .github-link a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #000;
+      border-radius: 6px;
+      background: #fff;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .github-link a:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .section,
+    .highlight-box {
+      background-color: #fffaf4;
+      border: 1px solid #ddd;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0.8rem;
+    }
+
+    .section img {
+      display: block;
+      margin: 1.5rem auto 0;
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #000;
+      background-color: #fff;
+      color: #000;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      line-height: 1.8;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="project-detail">
+    <h1>DoorDash Delivery Duration Prediction</h1>
+
+    <div class="github-link">
+      <a href="https://github.com/satkar605/doordash_delivery_prediction" target="_blank">View GitHub Repo</a>
+      <a href="https://github.com/satkar605/doordash_delivery_prediction/blob/main/delivery_time_doordash.ipynb" target="_blank">View Notebook</a>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>Project Goal:</strong> Build a predictive model that estimates total delivery time based on order-level data, marketplace conditions, and store behavior, while identifying key factors affecting delivery delays.</p>
+      <p><strong>Tech Stack:</strong> Python (pandas, numpy, seaborn, matplotlib), scikit-learn, xgboost</p>
+    </div>
+
+    <div class="section">
+      <h2>Why Delivery Time Prediction Matters</h2>
+      <p>DoorDash promises timely food delivery. Every delayed order risks customer churn, lower ratings, and operational friction. That's why <strong>predicting how long a delivery will take—before the order is placed—is a critical business function</strong>.</p>
+      <p>This project analyzes over <strong>170,000 historical DoorDash delivery logs</strong> to improve delivery duration estimates using machine learning. The goal was not just to build a predictive model, but to uncover what <em>actually drives delivery delays</em>.</p>
+    </div>
+
+    <div class="section">
+      <h2>Data and Method</h2>
+      <ul>
+        <li><strong>Source:</strong> Internal DoorDash logs from early 2015 (170,000+ rows)</li>
+        <li><strong>Target:</strong> Time from order placement to final delivery</li>
+        <li><strong>Variables:</strong> Timestamps, dasher activity, estimated durations, order item details, and market identifiers</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Key Analytical Steps</h2>
+      <h3>1. Preprocessing</h3>
+      <ul>
+        <li>Converted timestamp fields into delivery duration</li>
+        <li>Cleaned and standardized missing or extreme values</li>
+      </ul>
+
+      <h3>2. Feature Engineering</h3>
+      <p>Created new variables like:</p>
+      <ul>
+        <li><code>estimated_total_duration</code> (DoorDash's system ETA)</li>
+        <li><code>busy_ratio</code> (active dashers marked busy)</li>
+        <li><code>avg_price_per_item</code>, <code>item_diversity_ratio</code>, and <code>price_range_of_items</code></li>
+      </ul>
+
+      <h3>3. Feature Selection</h3>
+      <ul>
+        <li>Used correlation heatmaps and Variance Inflation Factor (VIF) to remove redundant predictors</li>
+        <li>Ranked feature importance via Random Forest (Gini index)</li>
+      </ul>
+
+      <h3>4. Modeling</h3>
+      <ul>
+        <li>Tested Linear, Ridge, Lasso, Partial Least Squares, Decision Tree, Random Forest, and XGBoost</li>
+        <li>Compared model accuracy on three feature sets: Top 10, Top 20, and all predictors</li>
+        <li>Evaluation Metric: RMSE (Root Mean Squared Error)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Visual Summary</h2>
+      <h3>Correlation Matrix: Detecting Multicollinearity</h3>
+      <img src="assets/corr.png" alt="Correlation heatmap showing relationships between features" class="project-image" />
+
+      <h3>Feature Importance: What Drives Delivery Time?</h3>
+      <img src="assets/feature.png" alt="Feature importance plot showing key predictors of delivery time" class="project-image" />
+
+      <h3>Model Comparison: Simpler Models Performed Better</h3>
+      <img src="assets/rmse.png" alt="RMSE comparison chart across different models" class="project-image" />
+    </div>
+
+    <div class="section">
+      <h2>Key Findings</h2>
+      <ul>
+        <li><strong>Estimated ETA was the strongest predictor.</strong><br>
+          DoorDash's internal pre-estimate (<code>estimated_total_duration</code>) was closely aligned with actual outcomes. This validated the engineering team's domain logic and data quality.</li>
+        <li><strong>Restaurant preparation time matters.</strong><br>
+          Features derived from item count, diversity, and price patterns suggested that complex or high-ticket orders contributed to delays before handoff to dashers.</li>
+        <li><strong>Driver congestion was a major delay factor.</strong><br>
+          The <code>busy_ratio</code> variable—how many dashers were marked busy during the order window—strongly influenced final delivery time.</li>
+        <li><strong>Simplicity outperformed complexity.</strong><br>
+          Lasso regression with just the top 10 features achieved the lowest RMSE, beating deeper models like XGBoost. This suggests DoorDash can rely on lean models for fast, interpretable predictions.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Business Implications</h2>
+      <ul>
+        <li><strong>More accurate ETAs reduce cancellations and improve trust.</strong><br>
+          Small improvements in time prediction create a more reliable customer experience and reduce refund costs.</li>
+        <li><strong>Operational visibility leads to smarter dispatching.</strong><br>
+          Real-time signals like busy_ratio can be used to rebalance dasher supply before bottlenecks form.</li>
+        <li><strong>Feature-informed modeling keeps systems agile.</strong><br>
+          By focusing on the strongest few signals, DoorDash can build real-time models that update quickly without sacrificing accuracy.</li>
+      </ul>
+    </div>
+
+    <div class="section" style="text-align:center;">
+      <a href="index.html" class="btn">← Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>
