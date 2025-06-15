@@ -125,14 +125,27 @@ h4 {
   position: relative;
   background-color: #fffaf4;
   border: 1px solid #ddd;
-  padding: 1.2rem;
+  padding: 1.2rem 1.2rem 2.2rem 1.2rem;
   border-radius: 10px;
-  transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s, background 0.2s;
   display: block;
+  min-height: 220px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  overflow: hidden;
 }
 
 .card:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  background: #f5f0e6;
+}
+
+.card-content {
+  min-height: 90px;
+  max-height: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .card h4 {
@@ -157,6 +170,15 @@ h4 {
 .tech-logos.bottom-left {
   position: absolute;
   left: 1.2rem;
+  bottom: 1.2rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.tech-logos.bottom-right {
+  position: absolute;
+  right: 1.2rem;
   bottom: 1.2rem;
   display: flex;
   align-items: flex-end;
@@ -263,6 +285,47 @@ h4 {
     height: 38px;
     max-width: 50px;
     padding: 2px;
+  }
+  .project-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .card {
+    min-height: 200px;
+    padding: 1rem 1rem 2rem 1rem;
+  }
+  .card-content {
+    min-height: 80px;
+    max-height: 100px;
+  }
+}
+@media (max-width: 600px) {
+  .certification-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .certification-card {
+    padding: 1.2rem 1rem;
+  }
+  .certification-img-wrap {
+    height: 48px;
+    width: 64px;
+    margin-right: 1rem;
+  }
+  .cert-img {
+    height: 38px;
+    max-width: 50px;
+    padding: 2px;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    min-height: 160px;
+    padding: 0.8rem 0.8rem 2rem 0.8rem;
+  }
+  .card-content {
+    min-height: 60px;
+    max-height: 80px;
   }
 }
 
