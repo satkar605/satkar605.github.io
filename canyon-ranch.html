@@ -145,15 +145,14 @@
       <img src="assets/relational_schema.png" alt="Relational database schema showing table relationships" class="project-image" />
 
       <h3>Analytical Warehouse (OLAP)</h3>
-      <p>To support trend analysis and decision-making, a snowflake schema was implemented. The model centers around a Fact_ReservationService table and is supported by four dimension tables:</p>
+      <p>To support strategic reporting and trend analysis, a snowflake schema was implemented in SQL Server. The central Fact_ReservationService table captures service-level transactions and is supported by four dimension tables, each designed to enable a specific layer of insight:</p>
       <ul>
-        <li>Dim_Customer</li>
-        <li>Dim_Service</li>
-        <li>Dim_ServiceType</li>
-        <li>Dim_Date</li>
+        <li><strong>Dim_Customer:</strong> Tracks demographic attributes (e.g., gender, age group, loyalty tier) to identify high-value segments, understand service preferences, and evaluate loyalty program effectiveness.</li>
+        <li><strong>Dim_Service:</strong> Contains detailed service-level data including price, duration, and average guest rating—enabling performance monitoring of individual offerings like massages, coaching sessions, or fitness classes.</li>
+        <li><strong>Dim_ServiceType:</strong> Normalizes the service categories into broader types (e.g., Spa, Fitness, Nutrition). This allows department heads to evaluate category-level performance, resource allocation, and satisfaction trends.</li>
+        <li><strong>Dim_Date:</strong> Encodes calendar information (day of week, month, quarter, year) to facilitate seasonal demand forecasting, peak/off-peak scheduling, and longitudinal guest behavior analysis.</li>
       </ul>
-      <p>This warehouse enables longitudinal analysis across services, guest demographics, and seasonal usage.</p>
-      <img src="assets/data_warehouse_schema.png" alt="Data warehouse snowflake schema showing fact and dimension tables" class="project-image" />
+      <p>This dimensional model enables Canyon Ranch to perform deep-dive analyses by guest profile, service type, and time period—supporting data-informed marketing, staffing, and service optimization strategies.</p>
 
       <h3>Pipeline and Infrastructure</h3>
       <p>The data pipeline used a hybrid ETL/ELT strategy:</p>
