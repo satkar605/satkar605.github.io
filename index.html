@@ -7,6 +7,93 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
+  
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SSLRX1KGV7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SSLRX1KGV7', {
+      page_title: 'Portfolio Homepage',
+      custom_map: {
+        'custom_parameter_1': 'user_type',
+        'custom_parameter_2': 'interaction_type'
+      }
+    });
+    
+    // Custom event tracking
+    function trackEvent(eventName, parameters = {}) {
+      gtag('event', eventName, {
+        event_category: 'Portfolio Interaction',
+        event_label: parameters.label || '',
+        value: parameters.value || 1,
+        ...parameters
+      });
+    }
+    
+    // Track page views for different sections
+    function trackSectionView(sectionName) {
+      trackEvent('section_view', {
+        event_label: sectionName,
+        custom_parameter_1: 'section_engagement'
+      });
+    }
+    
+    // Track project clicks
+    function trackProjectClick(projectName, projectType) {
+      trackEvent('project_click', {
+        event_label: projectName,
+        custom_parameter_1: projectType,
+        custom_parameter_2: 'project_engagement'
+      });
+    }
+    
+    // Track external link clicks
+    function trackExternalLink(linkType, linkUrl) {
+      trackEvent('external_link_click', {
+        event_label: linkType,
+        custom_parameter_1: linkUrl,
+        custom_parameter_2: 'external_engagement'
+      });
+    }
+    
+    // Track resume download
+    function trackResumeDownload() {
+      trackEvent('resume_download', {
+        event_label: 'Resume Download',
+        custom_parameter_1: 'career_interest',
+        custom_parameter_2: 'document_download'
+      });
+    }
+    
+    // Track email contact
+    function trackEmailContact() {
+      trackEvent('email_contact', {
+        event_label: 'Email Contact',
+        custom_parameter_1: 'contact_interest',
+        custom_parameter_2: 'communication_initiated'
+      });
+    }
+    
+    // Track Medium article clicks
+    function trackMediumClick(articleTitle) {
+      trackEvent('medium_article_click', {
+        event_label: articleTitle,
+        custom_parameter_1: 'content_engagement',
+        custom_parameter_2: 'writing_interest'
+      });
+    }
+    
+    // Track certification views
+    function trackCertificationView(certName) {
+      trackEvent('certification_view', {
+        event_label: certName,
+        custom_parameter_1: 'skill_verification',
+        custom_parameter_2: 'credential_interest'
+      });
+    }
+  </script>
 </head>
 <body>
 
@@ -17,10 +104,10 @@
       <h1>Satkar Karki</h1>
       <p class="subtitle">Business Analyst &middot; From Models to Meaning</p>
       <div class="cta-buttons">
-        <a href="assets/Satkar_Karki_Resume.pdf" class="btn" target="_blank">Resume</a>
-        <a href="https://linkedin.com/in/ksatkar" class="btn">LinkedIn</a>
-        <a href="https://github.com/satkar605" class="btn">GitHub</a>
-        <a href="mailto:karkisatkarhere@gmail.com" class="btn">Email</a>
+        <a href="assets/Satkar_Karki_Resume.pdf" class="btn" target="_blank" onclick="trackResumeDownload()">Resume</a>
+        <a href="https://linkedin.com/in/ksatkar" class="btn" onclick="trackExternalLink('LinkedIn', 'https://linkedin.com/in/ksatkar')">LinkedIn</a>
+        <a href="https://github.com/satkar605" class="btn" onclick="trackExternalLink('GitHub', 'https://github.com/satkar605')">GitHub</a>
+        <a href="mailto:karkisatkarhere@gmail.com" class="btn" onclick="trackEmailContact()">Email</a>
       </div>
     </div>
 
@@ -46,28 +133,28 @@
     <h3>Stakeholder Projects</h3>
     <p class="section-description"><em>These projects were created in collaboration with real organizations or student groups. The focus was on building solutions that could be applied and shared with others.</em></p>
     <div class="project-grid">
-      <a href="egg-forecasting.html" class="card relative">
+      <a href="egg-forecasting.html" class="card relative" onclick="trackProjectClick('Egg Price Forecasting', 'Stakeholder Project')">
         <h4>Egg Price Forecasting</h4>
         <p>Forecasted egg price fluctuations for Mister Smith's Bakery to secure cost-effective supplier contracts and avoid price shocks for customers.</p>
         <div class="tech-logos bottom-right">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/r.svg" alt="R" title="R" class="tool-icon" />
         </div>
       </a>
-      <a href="canyon-ranch.html" class="card relative">
+      <a href="canyon-ranch.html" class="card relative" onclick="trackProjectClick('Canyon Ranch Data Warehouse', 'Stakeholder Project')">
         <h4>Canyon Ranch Data Warehouse</h4>
         <p>Engineered a centralized reservation tracking system for Canyon Ranch resorts, improving service responsiveness and replacing outdated data systems.</p>
         <div class="tech-logos bottom-right">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt="SQL" title="SQL" class="tool-icon" />
         </div>
       </a>
-      <a href="doordash-prediction.html" class="card relative">
+      <a href="doordash-prediction.html" class="card relative" onclick="trackProjectClick('DoorDash Delivery Time Prediction', 'Stakeholder Project')">
         <h4>DoorDash Delivery Time Prediction</h4>
         <p>Built a machine learning model to predict delivery times based on traffic and order flow, helping DoorDash improve ETA accuracy and customer satisfaction.</p>
         <div class="tech-logos bottom-right">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt="Python" title="Python" class="tool-icon" />
         </div>
       </a>
-      <a href="ncaa-dashboard.html" class="card relative">
+      <a href="ncaa-dashboard.html" class="card relative" onclick="trackProjectClick('NCAA Referee Dashboard', 'Stakeholder Project')">
         <h4>NCAA Referee Dashboard</h4>
         <p>Scraped and structured NCAA game data into a relational database, then developed an interactive dashboard to optimize referee scheduling and performance insights.</p>
         <div class="tech-logos bottom-right">
@@ -81,7 +168,7 @@
     <h3>Personal Projects</h3>
     <p class="section-description"><em>These are self-initiated projects where I explored new tools, models, or ideas. They reflect my curiosity and commitment to continuous growth.</em></p>
     <div class="project-grid">
-      <a href="https://github.com/satkar605/nfl-4th-down-analysis" class="card relative" target="_blank">
+      <a href="https://github.com/satkar605/nfl-4th-down-analysis" class="card relative" target="_blank" onclick="trackProjectClick('NFL 4th Down Analysis', 'Personal Project')">
         <div class="card-content">
           <h4>NFL 4th Down Analysis</h4>
           <p>Modeled 4th down plays in SAS to guide better game-time decisions.</p>
@@ -90,7 +177,7 @@
           <img src="https://camo.githubusercontent.com/5cd2cc2038a98253c8451d4bf7d5b7dcc557523e63ea1ccd46ba04679347232e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5341532d3145394345463f7374796c653d666f722d7468652d6261646765266c6f676f3d736173266c6f676f436f6c6f723d7768697465" alt="SAS" title="SAS" class="tool-icon" />
         </div>
       </a>
-      <a href="https://github.com/satkar605/Used_Car_Price_Prediction" class="card relative" target="_blank">
+      <a href="https://github.com/satkar605/Used_Car_Price_Prediction" class="card relative" target="_blank" onclick="trackProjectClick('Audi Price Prediction', 'Personal Project')">
         <div class="card-content">
           <h4>Audi Price Prediction</h4>
           <p>Predicted used car prices with regression based on year, mileage, and engine specs.</p>
@@ -99,7 +186,7 @@
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/r.svg" alt="R" title="R" class="tool-icon" />
         </div>
       </a>
-      <a href="https://github.com/satkar605?tab=repositories" class="card relative" target="_blank">
+      <a href="https://github.com/satkar605?tab=repositories" class="card relative" target="_blank" onclick="trackProjectClick('TSA Claims Analysis', 'Personal Project')">
         <div class="card-content">
           <h4>TSA Claims Analysis</h4>
           <p>Analyzed passenger claims to find trends in baggage handling incidents.</p>
@@ -109,13 +196,22 @@
           <img src="https://camo.githubusercontent.com/5cd2cc2038a98253c8451d4bf7d5b7dcc557523e63ea1ccd46ba04679347232e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5341532d3145394345463f7374796c653d666f722d7468652d6261646765266c6f676f3d736173266c6f676f436f6c6f723d7768697465" alt="SAS" title="SAS" class="tool-icon" />
         </div>
       </a>
-      <a href="https://github.com/satkar605/rfm-analysis" class="card relative" target="_blank">
+      <a href="https://github.com/satkar605/rfm-analysis" class="card relative" target="_blank" onclick="trackProjectClick('RFM Segmentation – AdventureWorks', 'Personal Project')">
         <div class="card-content">
           <h4>RFM Segmentation – AdventureWorks</h4>
           <p>Segmented customers by RFM metrics to guide loyalty strategies.</p>
         </div>
         <div class="tech-logos bottom-right">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg" alt="SQL" title="SQL" class="tool-icon" />
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftexcel.svg" alt="Excel" title="Excel" class="tool-icon" />
+        </div>
+      </a>
+      <a href="https://github.com/satkar605/Smoothie_Optimization_Excel" class="card relative" target="_blank" onclick="trackProjectClick('Smoothie Optimization', 'Personal Project')">
+        <div class="card-content">
+          <h4>Smoothie Optimization</h4>
+          <p>Built Solver-based model to reduce production cost while meeting nutrition targets.</p>
+        </div>
+        <div class="tech-logos bottom-right">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftexcel.svg" alt="Excel" title="Excel" class="tool-icon" />
         </div>
       </a>
@@ -215,21 +311,21 @@
 <section class="medium-posts">
   <h2>Latest Writing on Medium</h2>
   <div class="medium-cards">
-    <a href="https://medium.com/@karkisatkarhere/from-patterns-to-practice-50978850fa5f" class="medium-card" target="_blank">
+    <a href="https://medium.com/@karkisatkarhere/from-patterns-to-practice-50978850fa5f" class="medium-card" target="_blank" onclick="trackMediumClick('NBA Careers through Analytical Patterns')">
       <div class="medium-card-content">
         <div class="medium-title">NBA Careers through Analytical Patterns</div>
         <div class="medium-summary">A deep dive into how basketball data reveals career-shaping performance patterns.</div>
       </div>
       <img src="assets/medium1.webp" alt="NBA Careers through Analytical Patterns" class="medium-thumb" />
     </a>
-    <a href="https://medium.com/@karkisatkarhere/how-i-turned-class-projects-into-real-world-analytics-wins-248c52340b4e" class="medium-card" target="_blank">
+    <a href="https://medium.com/@karkisatkarhere/how-i-turned-class-projects-into-real-world-analytics-wins-248c52340b4e" class="medium-card" target="_blank" onclick="trackMediumClick('How I Turned Class Projects into Real-World Analytics Wins')">
       <div class="medium-card-content">
         <div class="medium-title">How I Turned Class Projects into Real-World Analytics Wins</div>
         <div class="medium-summary">Turning academic case studies into portfolio-ready wins for real businesses.</div>
       </div>
       <img src="assets/medium2.webp" alt="How I Turned Class Projects into Real-World Analytics Wins" class="medium-thumb" />
     </a>
-    <a href="https://medium.com/@karkisatkarhere/expanding-fact-tables-into-behavioral-analytics-scaffolds-21162395cda9" class="medium-card" target="_blank">
+    <a href="https://medium.com/@karkisatkarhere/expanding-fact-tables-into-behavioral-analytics-scaffolds-21162395cda9" class="medium-card" target="_blank" onclick="trackMediumClick('Expanding Fact Tables into Behavioral Analytics Scaffolds')">
       <div class="medium-card-content">
         <div class="medium-title">Expanding Fact Tables into Behavioral Analytics Scaffolds</div>
         <div class="medium-summary">A framework for evolving basic tables into robust systems for behavioral analytics.</div>
@@ -238,7 +334,7 @@
     </a>
   </div>
   <div class="medium-all-btn-wrap">
-    <a href="https://medium.com/@karkisatkarhere" class="medium-all-btn" target="_blank">View All on Medium</a>
+    <a href="https://medium.com/@karkisatkarhere" class="medium-all-btn" target="_blank" onclick="trackExternalLink('Medium Profile', 'https://medium.com/@karkisatkarhere')">View All on Medium</a>
   </div>
 </section>
 
@@ -253,7 +349,7 @@
       </div>
       <div class="certification-info">
         <div class="cert-title">Microsoft Excel: Data Analysis with Excel Pivot Tables</div>
-        <a href="https://www.udemy.com/certificate/UC-12ba8bc0-09fc-409b-9671-d1ff8b262fe5/" class="cert-btn" target="_blank">View Certificate</a>
+        <a href="https://www.udemy.com/certificate/UC-12ba8bc0-09fc-409b-9671-d1ff8b262fe5/" class="cert-btn" target="_blank" onclick="trackCertificationView('Microsoft Excel: Data Analysis with Excel Pivot Tables')">View Certificate</a>
       </div>
     </div>
     <div class="certification-card">
@@ -262,7 +358,7 @@
       </div>
       <div class="certification-info">
         <div class="cert-title">Python Intermediate</div>
-        <a href="https://www.sololearn.com/certificates/CC-ZHIE8O0R" class="cert-btn" target="_blank">View Certificate</a>
+        <a href="https://www.sololearn.com/certificates/CC-ZHIE8O0R" class="cert-btn" target="_blank" onclick="trackCertificationView('Python Intermediate')">View Certificate</a>
       </div>
     </div>
     <div class="certification-card">
@@ -271,7 +367,7 @@
       </div>
       <div class="certification-info">
         <div class="cert-title">R Programming A-Z: R for Data Science</div>
-        <a href="https://www.udemy.com/certificate/UC-43f95df4-1199-40a7-b1c6-8167bcdf1712/" class="cert-btn" target="_blank">View Certificate</a>
+        <a href="https://www.udemy.com/certificate/UC-43f95df4-1199-40a7-b1c6-8167bcdf1712/" class="cert-btn" target="_blank" onclick="trackCertificationView('R Programming A-Z: R for Data Science')">View Certificate</a>
       </div>
     </div>
     <div class="certification-card">
@@ -280,7 +376,7 @@
       </div>
       <div class="certification-info">
         <div class="cert-title">SAS Base Programming</div>
-        <a href="https://www.linkedin.com/learning/certificates/2dfd9b8a6b23c368a0a76faebb6297a45f657e9019fa02cfc12e6683864cbaa3" class="cert-btn" target="_blank">View Certificate</a>
+        <a href="https://www.linkedin.com/learning/certificates/2dfd9b8a6b23c368a0a76faebb6297a45f657e9019fa02cfc12e6683864cbaa3" class="cert-btn" target="_blank" onclick="trackCertificationView('SAS Base Programming')">View Certificate</a>
       </div>
     </div>
   </div>

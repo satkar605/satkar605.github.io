@@ -6,6 +6,53 @@
   <title>DoorDash Delivery Prediction | Satkar Karki</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SSLRX1KGV7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SSLRX1KGV7', {
+      page_title: 'DoorDash Delivery Prediction Project',
+      custom_map: {
+        'custom_parameter_1': 'user_type',
+        'custom_parameter_2': 'interaction_type'
+      }
+    });
+    
+    // Custom event tracking
+    function trackEvent(eventName, parameters = {}) {
+      gtag('event', eventName, {
+        event_category: 'Portfolio Interaction',
+        event_label: parameters.label || '',
+        value: parameters.value || 1,
+        ...parameters
+      });
+    }
+    
+    // Track GitHub repo clicks
+    function trackGitHubClick(projectName) {
+      trackEvent('github_repo_click', {
+        event_label: projectName,
+        custom_parameter_1: 'project_engagement',
+        custom_parameter_2: 'code_interest'
+      });
+    }
+    
+    // Track time spent on page
+    let startTime = Date.now();
+    window.addEventListener('beforeunload', function() {
+      let timeSpent = Math.round((Date.now() - startTime) / 1000);
+      trackEvent('time_on_page', {
+        event_label: 'DoorDash Delivery Prediction',
+        value: timeSpent,
+        custom_parameter_1: 'engagement_duration',
+        custom_parameter_2: 'project_interest'
+      });
+    });
+  </script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <style>
     .project-detail {
@@ -166,8 +213,8 @@
     <h1>DoorDash Delivery Duration Prediction</h1>
 
     <div class="github-link">
-      <a href="https://github.com/satkar605/doordash_delivery_prediction" target="_blank">View GitHub Repo</a>
-      <a href="https://github.com/satkar605/doordash_delivery_prediction/blob/main/delivery_time_doordash.ipynb" target="_blank">View Notebook</a>
+      <a href="https://github.com/satkar605/doordash_delivery_prediction" target="_blank" onclick="trackGitHubClick('DoorDash Delivery Prediction')">View GitHub Repo</a>
+      <a href="https://github.com/satkar605/doordash_delivery_prediction/blob/main/delivery_time_doordash.ipynb" target="_blank" onclick="trackGitHubClick('DoorDash Delivery Prediction Notebook')">View Notebook</a>
     </div>
 
     <div class="highlight-box">

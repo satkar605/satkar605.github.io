@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Analytics Dashboard | Satkar Karki</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  
+  <!-- Chart.js for data visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <style>
+    .dashboard {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    
+    .dashboard h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      color: #666;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .chart-container {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .chart-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    .data-table {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .data-table h3 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    
+    th {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .note {
+      background: #f0f9ff;
+      border: 1px solid #0ea5e9;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .note h4 {
+      color: #0c4a6e;
+      margin-bottom: 0.5rem;
+    }
+    
+    .note p {
+      color: #0369a1;
+      margin: 0;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h1>Portfolio Analytics Dashboard</h1>
+    
+    <div class="note">
+      <h4>📊 Analytics Setup Complete!</h4>
+      <p>
+        <strong>✅ Step 1:</strong> Google Analytics 4 property created with Measurement ID: <strong>G-SSLRX1KGV7</strong><br>
+        <strong>✅ Step 2:</strong> Analytics code added to all HTML files<br>
+        <strong>⏳ Step 3:</strong> Wait 24-48 hours for data to populate, then view your analytics in Google Analytics console.<br>
+        <strong>📊 Step 4:</strong> This dashboard shows sample data - replace with real data from your GA4 reports.
+      </p>
+    </div>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" id="total-visitors">0</div>
+        <div class="stat-label">Total Visitors</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="page-views">0</div>
+        <div class="stat-label">Page Views</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="avg-session">0</div>
+        <div class="stat-label">Avg Session Duration</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="bounce-rate">0%</div>
+        <div class="stat-label">Bounce Rate</div>
+      </div>
+    </div>
+    
+    <div class="chart-container">
+      <div class="chart-title">Traffic Sources</div>
+      <canvas id="trafficChart" width="400" height="200"></canvas>
+    </div>
+    
+    <div class="chart-container">
+      <div class="chart-title">Most Popular Projects</div>
+      <canvas id="projectsChart" width="400" height="200"></canvas>
+    </div>
+    
+    <div class="data-table">
+      <h3>Top Performing Content</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Page/Content</th>
+            <th>Views</th>
+            <th>Avg Time on Page</th>
+            <th>Bounce Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Homepage</td>
+            <td id="homepage-views">0</td>
+            <td id="homepage-time">0s</td>
+            <td id="homepage-bounce">0%</td>
+          </tr>
+          <tr>
+            <td>Egg Price Forecasting</td>
+            <td id="egg-views">0</td>
+            <td id="egg-time">0s</td>
+            <td id="egg-bounce">0%</td>
+          </tr>
+          <tr>
+            <td>DoorDash Prediction</td>
+            <td id="doordash-views">0</td>
+            <td id="doordash-time">0s</td>
+            <td id="doordash-bounce">0%</td>
+          </tr>
+          <tr>
+            <td>NCAA Dashboard</td>
+            <td id="ncaa-views">0</td>
+            <td id="ncaa-time">0s</td>
+            <td id="ncaa-bounce">0%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="data-table">
+      <h3>User Engagement Events</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Event Type</th>
+            <th>Count</th>
+            <th>Conversion Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Resume Downloads</td>
+            <td id="resume-downloads">0</td>
+            <td id="resume-rate">0%</td>
+          </tr>
+          <tr>
+            <td>Email Contacts</td>
+            <td id="email-contacts">0</td>
+            <td id="email-rate">0%</td>
+          </tr>
+          <tr>
+            <td>GitHub Profile Visits</td>
+            <td id="github-clicks">0</td>
+            <td id="github-rate">0%</td>
+          </tr>
+          <tr>
+            <td>LinkedIn Profile Visits</td>
+            <td id="linkedin-clicks">0</td>
+            <td id="linkedin-rate">0%</td>
+          </tr>
+          <tr>
+            <td>Medium Article Clicks</td>
+            <td id="medium-clicks">0</td>
+            <td id="medium-rate">0%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <script>
+    // Sample data - replace with real data from Google Analytics
+    const sampleData = {
+      totalVisitors: 1250,
+      pageViews: 3200,
+      avgSessionDuration: 145,
+      bounceRate: 35,
+      trafficSources: {
+        'Direct': 45,
+        'Organic Search': 30,
+        'Social Media': 15,
+        'Referral': 10
+      },
+      popularProjects: {
+        'Egg Price Forecasting': 180,
+        'DoorDash Prediction': 150,
+        'NCAA Dashboard': 120,
+        'Canyon Ranch': 90
+      },
+      pagePerformance: {
+        homepage: { views: 800, time: 120, bounce: 25 },
+        egg: { views: 180, time: 180, bounce: 15 },
+        doordash: { views: 150, time: 160, bounce: 20 },
+        ncaa: { views: 120, time: 200, bounce: 10 }
+      },
+      events: {
+        resumeDownloads: 45,
+        emailContacts: 23,
+        githubClicks: 67,
+        linkedinClicks: 89,
+        mediumClicks: 34
+      }
+    };
+    
+    // Update dashboard with sample data
+    function updateDashboard() {
+      document.getElementById('total-visitors').textContent = sampleData.totalVisitors.toLocaleString();
+      document.getElementById('page-views').textContent = sampleData.pageViews.toLocaleString();
+      document.getElementById('avg-session').textContent = Math.floor(sampleData.avgSessionDuration / 60) + 'm ' + (sampleData.avgSessionDuration % 60) + 's';
+      document.getElementById('bounce-rate').textContent = sampleData.bounceRate + '%';
+      
+      // Update page performance table
+      document.getElementById('homepage-views').textContent = sampleData.pagePerformance.homepage.views;
+      document.getElementById('homepage-time').textContent = sampleData.pagePerformance.homepage.time + 's';
+      document.getElementById('homepage-bounce').textContent = sampleData.pagePerformance.homepage.bounce + '%';
+      
+      document.getElementById('egg-views').textContent = sampleData.pagePerformance.egg.views;
+      document.getElementById('egg-time').textContent = sampleData.pagePerformance.egg.time + 's';
+      document.getElementById('egg-bounce').textContent = sampleData.pagePerformance.egg.bounce + '%';
+      
+      document.getElementById('doordash-views').textContent = sampleData.pagePerformance.doordash.views;
+      document.getElementById('doordash-time').textContent = sampleData.pagePerformance.doordash.time + 's';
+      document.getElementById('doordash-bounce').textContent = sampleData.pagePerformance.doordash.bounce + '%';
+      
+      document.getElementById('ncaa-views').textContent = sampleData.pagePerformance.ncaa.views;
+      document.getElementById('ncaa-time').textContent = sampleData.pagePerformance.ncaa.time + 's';
+      document.getElementById('ncaa-bounce').textContent = sampleData.pagePerformance.ncaa.bounce + '%';
+      
+      // Update events table
+      document.getElementById('resume-downloads').textContent = sampleData.events.resumeDownloads;
+      document.getElementById('resume-rate').textContent = ((sampleData.events.resumeDownloads / sampleData.totalVisitors) * 100).toFixed(1) + '%';
+      
+      document.getElementById('email-contacts').textContent = sampleData.events.emailContacts;
+      document.getElementById('email-rate').textContent = ((sampleData.events.emailContacts / sampleData.totalVisitors) * 100).toFixed(1) + '%';
+      
+      document.getElementById('github-clicks').textContent = sampleData.events.githubClicks;
+      document.getElementById('github-rate').textContent = ((sampleData.events.githubClicks / sampleData.totalVisitors) * 100).toFixed(1) + '%';
+      
+      document.getElementById('linkedin-clicks').textContent = sampleData.events.linkedinClicks;
+      document.getElementById('linkedin-rate').textContent = ((sampleData.events.linkedinClicks / sampleData.totalVisitors) * 100).toFixed(1) + '%';
+      
+      document.getElementById('medium-clicks').textContent = sampleData.events.mediumClicks;
+      document.getElementById('medium-rate').textContent = ((sampleData.events.mediumClicks / sampleData.totalVisitors) * 100).toFixed(1) + '%';
+    }
+    
+    // Create charts
+    function createCharts() {
+      // Traffic Sources Chart
+      const trafficCtx = document.getElementById('trafficChart').getContext('2d');
+      new Chart(trafficCtx, {
+        type: 'doughnut',
+        data: {
+          labels: Object.keys(sampleData.trafficSources),
+          datasets: [{
+            data: Object.values(sampleData.trafficSources),
+            backgroundColor: [
+              '#3b82f6',
+              '#10b981',
+              '#f59e0b',
+              '#ef4444'
+            ]
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      });
+      
+      // Popular Projects Chart
+      const projectsCtx = document.getElementById('projectsChart').getContext('2d');
+      new Chart(projectsCtx, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(sampleData.popularProjects),
+          datasets: [{
+            label: 'Page Views',
+            data: Object.values(sampleData.popularProjects),
+            backgroundColor: '#3b82f6',
+            borderColor: '#2563eb',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
+    
+    // Initialize dashboard
+    document.addEventListener('DOMContentLoaded', function() {
+      updateDashboard();
+      createCharts();
+    });
+  </script>
+</body>
+</html> 
