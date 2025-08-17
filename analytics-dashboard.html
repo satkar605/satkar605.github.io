@@ -119,6 +119,42 @@
       margin: 0;
       line-height: 1.6;
     }
+    
+    .data-placeholder {
+      color: #999;
+      font-style: italic;
+    }
+    
+    .update-instructions {
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .update-instructions h4 {
+      color: #92400e;
+      margin-bottom: 1rem;
+    }
+    
+    .update-instructions ol {
+      color: #92400e;
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+    
+    .update-instructions li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+    
+    .update-instructions code {
+      background: #fef3c7;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: monospace;
+    }
   </style>
 </head>
 <body>
@@ -130,26 +166,36 @@
       <p>
         <strong>✅ Step 1:</strong> Google Analytics 4 property created with Measurement ID: <strong>G-SSLRX1KGV7</strong><br>
         <strong>✅ Step 2:</strong> Analytics code added to all HTML files<br>
-        <strong>⏳ Step 3:</strong> Wait 24-48 hours for data to populate, then view your analytics in Google Analytics console.<br>
-        <strong>📊 Step 4:</strong> This dashboard shows sample data - replace with real data from your GA4 reports.
+        <strong>✅ Step 3:</strong> Data collection active - you can see real stats in your GA4 console<br>
+        <strong>📊 Step 4:</strong> Update this dashboard with real data from your Google Analytics reports
       </p>
+    </div>
+    
+    <div class="update-instructions">
+      <h4>🔄 How to Update This Dashboard with Real Data</h4>
+      <ol>
+        <li><strong>Go to Google Analytics:</strong> Visit <a href="https://analytics.google.com" target="_blank">analytics.google.com</a> and select your property</li>
+        <li><strong>Get the data:</strong> Navigate to Reports → Realtime or Reports → Engagement to get your metrics</li>
+        <li><strong>Update the JavaScript:</strong> Replace the values in the <code>analyticsData</code> object below with your real GA4 data</li>
+        <li><strong>Save and refresh:</strong> Save this file and refresh the page to see your real analytics</li>
+      </ol>
     </div>
     
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-number" id="total-visitors">0</div>
+        <div class="stat-number" id="total-visitors">--</div>
         <div class="stat-label">Total Visitors</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" id="page-views">0</div>
+        <div class="stat-number" id="page-views">--</div>
         <div class="stat-label">Page Views</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" id="avg-session">0</div>
+        <div class="stat-number" id="avg-session">--</div>
         <div class="stat-label">Avg Session Duration</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" id="bounce-rate">0%</div>
+        <div class="stat-number" id="bounce-rate">--</div>
         <div class="stat-label">Bounce Rate</div>
       </div>
     </div>
@@ -157,11 +203,13 @@
     <div class="chart-container">
       <div class="chart-title">Traffic Sources</div>
       <canvas id="trafficChart" width="400" height="200"></canvas>
+      <p class="data-placeholder">Chart will populate when you add real traffic source data</p>
     </div>
     
     <div class="chart-container">
       <div class="chart-title">Most Popular Projects</div>
       <canvas id="projectsChart" width="400" height="200"></canvas>
+      <p class="data-placeholder">Chart will populate when you add real page performance data</p>
     </div>
     
     <div class="data-table">
@@ -178,27 +226,33 @@
         <tbody>
           <tr>
             <td>Homepage</td>
-            <td id="homepage-views">0</td>
-            <td id="homepage-time">0s</td>
-            <td id="homepage-bounce">0%</td>
+            <td id="homepage-views">--</td>
+            <td id="homepage-time">--</td>
+            <td id="homepage-bounce">--</td>
           </tr>
           <tr>
             <td>Egg Price Forecasting</td>
-            <td id="egg-views">0</td>
-            <td id="egg-time">0s</td>
-            <td id="egg-bounce">0%</td>
+            <td id="egg-views">--</td>
+            <td id="egg-time">--</td>
+            <td id="egg-bounce">--</td>
           </tr>
           <tr>
             <td>DoorDash Prediction</td>
-            <td id="doordash-views">0</td>
-            <td id="doordash-time">0s</td>
-            <td id="doordash-bounce">0%</td>
+            <td id="doordash-views">--</td>
+            <td id="doordash-time">--</td>
+            <td id="doordash-bounce">--</td>
           </tr>
           <tr>
             <td>NCAA Dashboard</td>
-            <td id="ncaa-views">0</td>
-            <td id="ncaa-time">0s</td>
-            <td id="ncaa-bounce">0%</td>
+            <td id="ncaa-views">--</td>
+            <td id="ncaa-time">--</td>
+            <td id="ncaa-bounce">--</td>
+          </tr>
+          <tr>
+            <td>Canyon Ranch</td>
+            <td id="canyon-views">--</td>
+            <td id="canyon-time">--</td>
+            <td id="canyon-bounce">--</td>
           </tr>
         </tbody>
       </table>
@@ -217,28 +271,28 @@
         <tbody>
           <tr>
             <td>Resume Downloads</td>
-            <td id="resume-downloads">0</td>
-            <td id="resume-rate">0%</td>
+            <td id="resume-downloads">--</td>
+            <td id="resume-rate">--</td>
           </tr>
           <tr>
             <td>Email Contacts</td>
-            <td id="email-contacts">0</td>
-            <td id="email-rate">0%</td>
+            <td id="email-contacts">--</td>
+            <td id="email-rate">--</td>
           </tr>
           <tr>
             <td>GitHub Profile Visits</td>
-            <td id="github-clicks">0</td>
-            <td id="github-rate">0%</td>
+            <td id="github-clicks">--</td>
+            <td id="github-rate">--</td>
           </tr>
           <tr>
             <td>LinkedIn Profile Visits</td>
-            <td id="linkedin-clicks">0</td>
-            <td id="linkedin-rate">0%</td>
+            <td id="linkedin-clicks">--</td>
+            <td id="linkedin-rate">--</td>
           </tr>
           <tr>
             <td>Medium Article Clicks</td>
-            <td id="medium-clicks">0</td>
-            <td id="medium-rate">0%</td>
+            <td id="medium-clicks">--</td>
+            <td id="medium-rate">--</td>
           </tr>
         </tbody>
       </table>
@@ -246,136 +300,146 @@
   </div>
   
   <script>
-    // Sample data - replace with real data from Google Analytics
-    const sampleData = {
-      totalVisitors: 1250,
-      pageViews: 3200,
-      avgSessionDuration: 145,
-      bounceRate: 35,
+    // REAL ANALYTICS DATA - Update these values with data from your Google Analytics 4 reports
+    // Go to: https://analytics.google.com → Your Property → Reports → Engagement
+    const analyticsData = {
+      // Overall metrics (from GA4 Overview or Realtime reports)
+      totalVisitors: 0,        // Replace with your actual user count
+      pageViews: 0,           // Replace with your actual page view count
+      avgSessionDuration: 0,  // Replace with average session duration in seconds
+      bounceRate: 0,          // Replace with your bounce rate percentage
+      
+      // Traffic sources (from GA4 Traffic Acquisition report)
       trafficSources: {
-        'Direct': 45,
-        'Organic Search': 30,
-        'Social Media': 15,
-        'Referral': 10
+        // Example: 'Direct': 45, 'Organic Search': 30, 'Social Media': 15, 'Referral': 10
+        // Replace with your actual traffic source percentages
       },
+      
+      // Page performance (from GA4 Pages and screens report)
       popularProjects: {
-        'Egg Price Forecasting': 180,
-        'DoorDash Prediction': 150,
-        'NCAA Dashboard': 120,
-        'Canyon Ranch': 90
+        // Example: 'Egg Price Forecasting': 180, 'DoorDash Prediction': 150
+        // Replace with your actual page view counts for each project
       },
+      
+      // Individual page metrics (from GA4 Pages and screens report)
       pagePerformance: {
-        homepage: { views: 800, time: 120, bounce: 25 },
-        egg: { views: 180, time: 180, bounce: 15 },
-        doordash: { views: 150, time: 160, bounce: 20 },
-        ncaa: { views: 120, time: 200, bounce: 10 }
+        homepage: { views: 0, time: 0, bounce: 0 },
+        egg: { views: 0, time: 0, bounce: 0 },
+        doordash: { views: 0, time: 0, bounce: 0 },
+        ncaa: { views: 0, time: 0, bounce: 0 },
+        canyon: { views: 0, time: 0, bounce: 0 }
       },
+      
+      // Custom events (from GA4 Events report)
       events: {
-        resumeDownloads: 45,
-        emailContacts: 23,
-        githubClicks: 67,
-        linkedinClicks: 89,
-        mediumClicks: 34
+        resumeDownloads: 0,
+        emailContacts: 0,
+        githubClicks: 0,
+        linkedinClicks: 0,
+        mediumClicks: 0
       }
     };
     
-    // Update dashboard with sample data
+    // Update dashboard with real analytics data
     function updateDashboard() {
-      document.getElementById('total-visitors').textContent = sampleData.totalVisitors.toLocaleString();
-      document.getElementById('page-views').textContent = sampleData.pageViews.toLocaleString();
-      document.getElementById('avg-session').textContent = Math.floor(sampleData.avgSessionDuration / 60) + 'm ' + (sampleData.avgSessionDuration % 60) + 's';
-      document.getElementById('bounce-rate').textContent = sampleData.bounceRate + '%';
+      // Update main stats
+      document.getElementById('total-visitors').textContent = analyticsData.totalVisitors > 0 ? analyticsData.totalVisitors.toLocaleString() : '--';
+      document.getElementById('page-views').textContent = analyticsData.pageViews > 0 ? analyticsData.pageViews.toLocaleString() : '--';
+      
+      if (analyticsData.avgSessionDuration > 0) {
+        const minutes = Math.floor(analyticsData.avgSessionDuration / 60);
+        const seconds = analyticsData.avgSessionDuration % 60;
+        document.getElementById('avg-session').textContent = `${minutes}m ${seconds}s`;
+      } else {
+        document.getElementById('avg-session').textContent = '--';
+      }
+      
+      document.getElementById('bounce-rate').textContent = analyticsData.bounceRate > 0 ? analyticsData.bounceRate + '%' : '--';
       
       // Update page performance table
-      document.getElementById('homepage-views').textContent = sampleData.pagePerformance.homepage.views;
-      document.getElementById('homepage-time').textContent = sampleData.pagePerformance.homepage.time + 's';
-      document.getElementById('homepage-bounce').textContent = sampleData.pagePerformance.homepage.bounce + '%';
-      
-      document.getElementById('egg-views').textContent = sampleData.pagePerformance.egg.views;
-      document.getElementById('egg-time').textContent = sampleData.pagePerformance.egg.time + 's';
-      document.getElementById('egg-bounce').textContent = sampleData.pagePerformance.egg.bounce + '%';
-      
-      document.getElementById('doordash-views').textContent = sampleData.pagePerformance.doordash.views;
-      document.getElementById('doordash-time').textContent = sampleData.pagePerformance.doordash.time + 's';
-      document.getElementById('doordash-bounce').textContent = sampleData.pagePerformance.doordash.bounce + '%';
-      
-      document.getElementById('ncaa-views').textContent = sampleData.pagePerformance.ncaa.views;
-      document.getElementById('ncaa-time').textContent = sampleData.pagePerformance.ncaa.time + 's';
-      document.getElementById('ncaa-bounce').textContent = sampleData.pagePerformance.ncaa.bounce + '%';
+      const pages = ['homepage', 'egg', 'doordash', 'ncaa', 'canyon'];
+      pages.forEach(page => {
+        const data = analyticsData.pagePerformance[page];
+        if (data.views > 0) {
+          document.getElementById(`${page}-views`).textContent = data.views;
+          document.getElementById(`${page}-time`).textContent = data.time + 's';
+          document.getElementById(`${page}-bounce`).textContent = data.bounce + '%';
+        }
+      });
       
       // Update events table
-      document.getElementById('resume-downloads').textContent = sampleData.events.resumeDownloads;
-      document.getElementById('resume-rate').textContent = ((sampleData.events.resumeDownloads / sampleData.totalVisitors) * 100).toFixed(1) + '%';
-      
-      document.getElementById('email-contacts').textContent = sampleData.events.emailContacts;
-      document.getElementById('email-rate').textContent = ((sampleData.events.emailContacts / sampleData.totalVisitors) * 100).toFixed(1) + '%';
-      
-      document.getElementById('github-clicks').textContent = sampleData.events.githubClicks;
-      document.getElementById('github-rate').textContent = ((sampleData.events.githubClicks / sampleData.totalVisitors) * 100).toFixed(1) + '%';
-      
-      document.getElementById('linkedin-clicks').textContent = sampleData.events.linkedinClicks;
-      document.getElementById('linkedin-rate').textContent = ((sampleData.events.linkedinClicks / sampleData.totalVisitors) * 100).toFixed(1) + '%';
-      
-      document.getElementById('medium-clicks').textContent = sampleData.events.mediumClicks;
-      document.getElementById('medium-rate').textContent = ((sampleData.events.mediumClicks / sampleData.totalVisitors) * 100).toFixed(1) + '%';
+      const eventTypes = ['resumeDownloads', 'emailContacts', 'githubClicks', 'linkedinClicks', 'mediumClicks'];
+      eventTypes.forEach(event => {
+        const count = analyticsData.events[event];
+        const rate = analyticsData.totalVisitors > 0 ? ((count / analyticsData.totalVisitors) * 100).toFixed(1) : 0;
+        
+        document.getElementById(`${event.replace('Clicks', '-clicks').replace('Downloads', '-downloads').replace('Contacts', '-contacts')}`).textContent = count > 0 ? count : '--';
+        document.getElementById(`${event.replace('Clicks', '-rate').replace('Downloads', '-rate').replace('Contacts', '-rate')}`).textContent = count > 0 ? rate + '%' : '--';
+      });
     }
     
-    // Create charts
+    // Create charts with real data
     function createCharts() {
       // Traffic Sources Chart
       const trafficCtx = document.getElementById('trafficChart').getContext('2d');
-      new Chart(trafficCtx, {
-        type: 'doughnut',
-        data: {
-          labels: Object.keys(sampleData.trafficSources),
-          datasets: [{
-            data: Object.values(sampleData.trafficSources),
-            backgroundColor: [
-              '#3b82f6',
-              '#10b981',
-              '#f59e0b',
-              '#ef4444'
-            ]
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'bottom'
+      if (Object.keys(analyticsData.trafficSources).length > 0) {
+        new Chart(trafficCtx, {
+          type: 'doughnut',
+          data: {
+            labels: Object.keys(analyticsData.trafficSources),
+            datasets: [{
+              data: Object.values(analyticsData.trafficSources),
+              backgroundColor: [
+                '#3b82f6',
+                '#10b981',
+                '#f59e0b',
+                '#ef4444',
+                '#8b5cf6',
+                '#06b6d4'
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'bottom'
+              }
             }
           }
-        }
-      });
+        });
+      }
       
       // Popular Projects Chart
       const projectsCtx = document.getElementById('projectsChart').getContext('2d');
-      new Chart(projectsCtx, {
-        type: 'bar',
-        data: {
-          labels: Object.keys(sampleData.popularProjects),
-          datasets: [{
-            label: 'Page Views',
-            data: Object.values(sampleData.popularProjects),
-            backgroundColor: '#3b82f6',
-            borderColor: '#2563eb',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+      if (Object.keys(analyticsData.popularProjects).length > 0) {
+        new Chart(projectsCtx, {
+          type: 'bar',
+          data: {
+            labels: Object.keys(analyticsData.popularProjects),
+            datasets: [{
+              label: 'Page Views',
+              data: Object.values(analyticsData.popularProjects),
+              backgroundColor: '#3b82f6',
+              borderColor: '#2563eb',
+              borderWidth: 1
+            }]
           },
-          plugins: {
-            legend: {
-              display: false
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              }
             }
           }
-        }
-      });
+        });
+      }
     }
     
     // Initialize dashboard
