@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NCAA Referee Dashboard | Satkar Karki</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SSLRX1KGV7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SSLRX1KGV7', {
+      page_title: 'NCAA Referee Dashboard Project',
+      custom_map: {
+        'custom_parameter_1': 'user_type',
+        'custom_parameter_2': 'interaction_type'
+      }
+    });
+    
+    // Custom event tracking
+    function trackEvent(eventName, parameters = {}) {
+      gtag('event', eventName, {
+        event_category: 'Portfolio Interaction',
+        event_label: parameters.label || '',
+        value: parameters.value || 1,
+        ...parameters
+      });
+    }
+    
+    // Track GitHub repo clicks
+    function trackGitHubClick(projectName) {
+      trackEvent('github_repo_click', {
+        event_label: projectName,
+        custom_parameter_1: 'project_engagement',
+        custom_parameter_2: 'code_interest'
+      });
+    }
+    
+    // Track time spent on page
+    let startTime = Date.now();
+    window.addEventListener('beforeunload', function() {
+      let timeSpent = Math.round((Date.now() - startTime) / 1000);
+      trackEvent('time_on_page', {
+        event_label: 'NCAA Referee Dashboard',
+        value: timeSpent,
+        custom_parameter_1: 'engagement_duration',
+        custom_parameter_2: 'project_interest'
+      });
+    });
+  </script>
+  
+  <style>
+    .project-detail {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .project-detail h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .github-link {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .github-link a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #000;
+      border-radius: 6px;
+      background: #fff;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .github-link a:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .section,
+    .highlight-box {
+      background-color: #fffaf4;
+      border: 1px solid #ddd;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0.8rem;
+    }
+
+    .section img {
+      display: block;
+      margin: 1.5rem auto 0;
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #000;
+      background-color: #fff;
+      color: #000;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      line-height: 1.8;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="project-detail">
+    <h1>NCAA Referee Dashboard</h1>
+    <h2>Exploring Referee Travel and Workload in Division I Men's Basketball</h2>
+
+    <div class="github-link">
+      <a href="https://github.com/satkar605/ncaa-referee-analysis" target="_blank" onclick="trackGitHubClick('NCAA Referee Dashboard')">View GitHub Repo</a>
+      <a href="https://satkar605.shinyapps.io/ncaa-dashboard/" target="_blank">Live Dashboard</a>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>Project Goal:</strong> Explore whether referee travel distance influences officiating behavior during NCAA Division I Men's Basketball games.</p>
+      <p><strong>Tech Stack:</strong> Python (requests, beautifulsoup, geopy), R (tidyverse, ggplot2, plotly), R Shiny</p>
+    </div>
+
+    <div class="section">
+      <h2>From Problem Framing to Data Product</h2>
+      <p>In college basketball, high-stakes games demand fairness. But what if unseen factors influence outcomes? This project began with a simple question: <em>Does referee travel distance affect officiating behavior?</em> Before answering that, I had to build the data infrastructure from the ground up.</p>
+    </div>
+
+    <div class="section">
+      <h2>Laying the Data Foundation</h2>
+      <p>Unlike modern APIs, <code>stats.ncaa.org</code> is a static HTML site with no structured access points. Every game, box score, and referee assignment is embedded in hard-to-navigate pages. The breakthrough came from discovering that each game had a unique ID buried in the URL. This became the anchor for scraping a full season's worth of data.</p>
+      <img src="assets/scraping.png" alt="Diagram showing the game ID scraping strategy" class="project-image" />
+      <p>Using custom Python scripts, I automated the collection of game IDs by date and extracted structured details for each matchup. This included team stats, locations, and referee crews. The final dataset consolidated 5,922 games across the 2024–25 season with 34 structured columns and over 770 referees.</p>
+    </div>
+
+    <div class="section">
+      <h2>Estimating Referee Travel</h2>
+      <p>To measure travel, I geocoded venue names into latitude and longitude coordinates using Nominatim (OpenStreetMap). I then calculated straight-line distances between each official's assignments across the season. This helped reconstruct a proxy travel itinerary for every referee.</p>
+      <ul>
+        <li><strong>Referees tracked:</strong> 778</li>
+        <li><strong>Top traveler:</strong> Keith Kimble officiated 90 games, traveling an estimated 47,459 miles</li>
+        <li><strong>Average trip:</strong> Exceeded 500 miles for top referees</li>
+        <li><strong>Coverage:</strong> Games across 29 states</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Building the Interactive Dashboard</h2>
+      <p>To make the data actionable, I developed an <strong>R Shiny dashboard</strong> to visualize referee workload and travel behavior. It provides real-time exploration of referee patterns and flags outliers in assignment strategy.</p>
+      <img src="assets/average_games_refereed.png" alt="Dashboard overview showing referee workload patterns" class="project-image" />
+    </div>
+
+    <div class="section">
+      <h2>Key Features</h2>
+      <h3>Overview Tab</h3>
+      <ul>
+        <li>Summarizes national referee coverage, cumulative travel, and total games officiated</li>
+        <li>Visualizes venue diversity and workload patterns with interactive plots</li>
+        <li>Helps identify high-mileage officials and unusual scheduling patterns</li>
+      </ul>
+      <img src="assets/overview_tab.png" alt="Rankings tab showing referee performance metrics" class="project-image" />
+
+      <h3>Referee Rankings Tab</h3>
+      <ul>
+        <li>Ranks referees by travel distance, game count, and venue diversity</li>
+        <li>Supports fairness reviews and operations planning</li>
+        <li>Tables can be filtered and exported for team use</li>
+      </ul>
+      <img src="assets/referee_rankings_tab.png" alt="Individual referee analysis view" class="project-image" />
+
+      <h3>Individual Referee Tab</h3>
+      <ul>
+        <li>Breaks down each referee's travel profile across the season</li>
+        <li>Highlights average, shortest, and longest trips</li>
+        <li>Visual timeline helps identify rest periods and fatigue risks</li>
+      </ul>
+      <img src="assets/individual_referee_tab.png" alt="Individual referee analysis view showing travel patterns and workload" class="project-image" />
+    </div>
+
+    <div class="section">
+      <h2>Limitations and Design Choices</h2>
+      <ul>
+        <li>Distances are approximated using great-circle formulas, not actual routes</li>
+        <li>No driving, flight, or transportation APIs were used</li>
+        <li>Travel behavior is assumed uniform across referees</li>
+        <li>No statistical link was found between travel distance and foul calls</li>
+        <li>The dashboard is designed for monitoring workload, not judging referee performance</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Behind the Scenes: Distance Calculation</h2>
+      <p>A custom Python class was developed to:</p>
+      <ul>
+        <li>Geocode venues using Nominatim with caching</li>
+        <li>Extract referee assignments per game</li>
+        <li>Calculate travel metrics (total miles, average trip, unique venues)</li>
+        <li>Output a clean, referee-level dataset for dashboard integration</li>
+      </ul>
+    </div>
+
+    <div class="section" style="text-align:center;">
+      <a href="index.html" class="btn" onclick="trackEvent('back_to_home_click', { event_label: 'NCAA Referee Dashboard' })">← Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>
+

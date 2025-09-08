@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trail Trekker Subscription Analytics | Satkar Karki</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SSLRX1KGV7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-SSLRX1KGV7', {
+      page_title: 'Trail Trekker Subscription Analytics',
+      custom_map: {
+        'custom_parameter_1': 'user_type',
+        'custom_parameter_2': 'interaction_type'
+      }
+    });
+    function trackEvent(eventName, parameters = {}) {
+      gtag('event', eventName, {
+        event_category: 'Portfolio Interaction',
+        event_label: parameters.label || '',
+        value: parameters.value || 1,
+        ...parameters
+      });
+    }
+    function trackGitHubClick(projectName) {
+      trackEvent('github_repo_click', {
+        event_label: projectName,
+        custom_parameter_1: 'project_engagement',
+        custom_parameter_2: 'code_interest'
+      });
+    }
+  </script>
+  
+  <style>
+    .project-detail {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    .project-detail h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .github-link {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .github-link a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #000;
+      border-radius: 6px;
+      background: #fff;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+    }
+    .github-link a:hover { background: #000; color: #fff; }
+    .section, .highlight-box {
+      background-color: #fffaf4;
+      border: 1px solid #ddd;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+    }
+    .section h2 { margin-bottom: 0.6rem; }
+    ul { padding-left: 1.5rem; line-height: 1.8; }
+    li { margin-bottom: 0.5rem; }
+    p { line-height: 1.75; margin-bottom: 1rem; }
+    .btn { padding: 0.6rem 1.2rem; border: 2px solid #000; background: #fff; color: #000; font-weight: 600; transition: all 0.2s ease-in-out; }
+    .btn:hover { background: #000; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="project-detail">
+    <h1>Trail Trekker Subscription Analytics Pipeline</h1>
+
+    <div class="github-link">
+      <a href="https://github.com/satkar605/subscription-analytics-pipeline" class="btn" target="_blank" rel="noopener noreferrer" onclick="trackGitHubClick('Trail Trekker Subscription Analytics')">View GitHub Repo</a>
+    </div>
+
+    <div class="section">
+      <h2>Problem</h2>
+      <p>The Growth team at Trail Trekker needs reliable, timely insight into how customers change their subscriptions over time—upgrades, downgrades, pauses, and churn. They lack a warehouse and scheduled transformations to answer questions like which plans customers upgrade to, when churn events occur, and the revenue impact of plan changes.</p>
+    </div>
+
+    <div class="section">
+      <h2>Stakeholder</h2>
+      <p><strong>Primary:</strong> Growth/Revenue Operations (ETAs on upgrades, churn detection, MRR impact).<br/>
+         <strong>Secondary:</strong> Product & Finance (feature adoption, pricing tiers, forecasting).</p>
+    </div>
+
+    <div class="section">
+      <h2>Approach</h2>
+      <h3>1) Ingestion (Python + DuckDB)</h3>
+      <ul>
+        <li>CSV sources ingested into a persistent DuckDB file (<code>trail_trekker.db</code>).</li>
+        <li>Idempotent table creation via <code>CREATE OR REPLACE TABLE</code>; minimal CLI for repeatability.</li>
+      </ul>
+      <h3>2) Transformation (SQLMesh)</h3>
+      <ul>
+        <li>Staging views to standardize types/names and fix data quality (e.g., literal "NULL" timestamps).</li>
+        <li>Dimensional layer with SCD Type 2 for <code>customers</code> and <code>plans</code> to preserve history.</li>
+        <li>Transaction fact table for subscription change events.</li>
+      </ul>
+      <h3>3) Orchestration (cron)</h3>
+      <ul>
+        <li>Hourly schedule on the fact model; local cron invokes <code>sqlmesh run prod</code> with logs.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Solutions</h2>
+      <h3>Dimensional Model</h3>
+      <ul>
+        <li><strong>Dimensions:</strong> <code>dim.customers</code>, <code>dim.plans</code> (SCD2 with valid from/to, is_current, updated_at); <code>dim.dates</code> calendar spine.</li>
+        <li><strong>Fact:</strong> <code>fct.subscription_changes</code> at grain one row per customer per subscription per change.</li>
+      </ul>
+      <h3>Key Metrics & Logic</h3>
+      <ul>
+        <li>Change detection via window functions (e.g., previous plan, days on prior plan).</li>
+        <li>Flags for upgrade/downgrade/cancellation; plan change amount and revenue impact.</li>
+      </ul>
+      <h3>Results</h3>
+      <ul>
+        <li>Detected 13 plan transitions in sample data.</li>
+        <li>Common transitions: Basic → Pro Annual; Basic → Premium Monthly; Premium → Basic.</li>
+      </ul>
+      <h3>Impact for Growth Team</h3>
+      <ul>
+        <li>Near real-time visibility into upgrades/downgrades and churn windows.</li>
+        <li>Historical truth of customer and plan attributes for pricing and segmentation decisions.</li>
+        <li>Clear runway to plug into BI and lifecycle automation.</li>
+      </ul>
+    </div>
+
+    <div class="section" style="text-align:center;">
+      <a href="index.html" class="btn" onclick="trackEvent('back_to_home_click', { event_label: 'Trail Trekker Subscription Analytics' })">← Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>
+
+
