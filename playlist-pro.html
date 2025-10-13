@@ -185,7 +185,8 @@
     <h1>PlaylistPro Customer Churn Prediction & Retention Optimization</h1>
 
     <div class="github-link">
-      <a href="https://github.com/satkar605/playlist-pro" target="_blank" onclick="trackGitHubClick('Playlist Pro Analytics')">View GitHub Repo</a>
+      <a href="playlist-pro-descriptive.html" class="btn" target="_blank" onclick="trackReportClick('Descriptive Analysis Report')">📊 Read Descriptive Analysis</a>
+      <a href="playlist-pro-predictive.html" class="btn" target="_blank" onclick="trackReportClick('Predictive Analysis Report')">🤖 Read Predictive Analysis</a>
     </div>
 
     <div class="highlight-box">
@@ -194,9 +195,11 @@
     </div>
 
     <div class="section">
-      <h2>Business Problem</h2>
-      <p>Customer churn represents a significant revenue loss for PlaylistPro. The company's reactive retention approach treated all customers uniformly, resulting in inefficient resource allocation. Marketing dollars were wasted on loyal customers who would have stayed anyway, while truly at-risk users received insufficient attention.</p>
-      <p>Without the ability to predict which customers were most likely to leave and why, PlaylistPro could not prioritize retention efforts effectively. <strong>The business question was clear: How can we identify customers at highest risk of churning and deploy retention resources optimally to protect revenue?</strong></p>
+      <h2>The Problem: A Company Losing Half Its Customers</h2>
+      <img src="descriptive_analysis_report_files/figure-html/response-analysis-1.png" alt="Customer Churn Distribution" style="max-width: 600px;">
+      <p>The numbers told a stark story: <strong>51.3% of PlaylistPro's 125,000 customers had churned</strong>. This wasn't a small segment or niche issue—it was a systemic retention crisis threatening the company's survival. With churn and retention nearly equal, every customer decision mattered.</p>
+      <p>The business question was urgent: <strong>How can we identify customers at highest risk of churning before they leave, and deploy retention resources optimally to protect revenue?</strong></p>
+      <p>The company's reactive approach wasn't working. Marketing dollars were wasted on loyal customers who would have stayed anyway, while truly at-risk users received insufficient attention. PlaylistPro needed a data-driven system to predict churn risk and guide intervention strategies.</p>
     </div>
 
     <div class="section">
@@ -211,75 +214,97 @@
     </div>
 
     <div class="section">
-      <h2>Analytical Approach</h2>
-      <p>The project followed a comprehensive three-phase analytical framework:</p>
+      <h2>Discovery: What Drives Customers Away?</h2>
+      <p>Analyzing 125,000 customer records across 19 behavioral and demographic variables, we discovered that <strong>no single factor explained churn</strong>. The correlation analysis revealed weak relationships across the board:</p>
+      <img src="descriptive_analysis_report_files/figure-html/correlation-analysis-1.png" alt="Correlation Heatmap" style="max-width: 700px;">
+      <p>This finding was crucial: churn wasn't driven by one obvious problem we could fix. Instead, it emerged from <strong>patterns of behavior</strong> that, when combined, signaled customer disengagement. The business needed a sophisticated model to detect these patterns early.</p>
       
-      <h3>Phase 1: Descriptive Analysis</h3>
-      <p>Exploratory analysis of <strong>125,000 customer records</strong> across 19 variables revealed critical behavioral patterns:</p>
+      <h3>Key Behavioral Signals Emerged:</h3>
       <ul>
-        <li><strong>Engagement Drives Retention:</strong> Customers with low weekly listening hours (under 10 hours) showed significantly higher churn rates</li>
-        <li><strong>Service Friction Signals Risk:</strong> 74% churn rate among customers with high service inquiries; frequent subscription pauses correlate with eventual churn</li>
-        <li><strong>Content Dissatisfaction:</strong> Higher song skip rates indicate misalignment between recommendations and user preferences</li>
-        <li><strong>Non-Linear Demographics:</strong> U-shaped age-churn relationship (younger and older users churn more than middle-aged subscribers)</li>
-        <li><strong>Payment & Geography Neutral:</strong> Churn rates consistent across payment methods, billing plans, and locations</li>
-      </ul>
-
-      <h3>Phase 2: Predictive Modeling</h3>
-      <p>Four supervised learning models were developed and rigorously compared:</p>
-      <ul>
-        <li><strong>Logistic Regression:</strong> Baseline model with interpretability (84% accuracy, AUC 0.90)</li>
-        <li><strong>Stepwise Logistic Regression:</strong> Feature selection via AIC optimization</li>
-        <li><strong>Random Forest:</strong> Ensemble bagging approach</li>
-        <li><strong>XGBoost (Winner):</strong> 84.79% validation accuracy, F1-score 0.8517, <strong>AUC 0.94</strong></li>
-      </ul>
-      <p><strong>Top Predictors:</strong> Subscription type, weekly listening hours, customer service inquiries, song skip rate, subscription pauses, and age (with quadratic term)</p>
-
-      <h3>Phase 3: Prescriptive Strategy</h3>
-      <p>A real-time, risk-based intervention system deployed during the unsubscribe process:</p>
-      <ul>
-        <li><strong>Low risk (&lt;30%):</strong> No discount (likely to stay regardless)</li>
-        <li><strong>Medium risk (30-60%):</strong> 15% discount for 3 months</li>
-        <li><strong>High risk (60-85%):</strong> 30% discount for 6 months + personalized playlist</li>
-        <li><strong>Critical risk (&gt;85%):</strong> 50% discount for 3 months + premium features trial</li>
+        <li><strong>Engagement Collapse:</strong> Customers with fewer than 10 weekly listening hours showed dramatically higher churn rates. When users stopped engaging with the platform, they were already halfway out the door.</li>
+        <li><strong>Service Friction as a Red Flag:</strong> 74% of customers with high service inquiry frequency eventually churned, compared to minimal churn among those with low inquiry levels. Frequent support contacts signaled unresolved frustration.</li>
+        <li><strong>Content Dissatisfaction:</strong> Higher song skip rates indicated misalignment between recommendations and user preferences—customers weren't finding music they loved.</li>
+        <li><strong>Subscription Pauses Predict Churn:</strong> Customers who paused their subscription 3+ times were at significantly elevated risk. Each pause represented a moment of doubt about the service's value.</li>
+        <li><strong>Age Shows U-Shaped Risk:</strong> Both younger (under 25) and older (over 60) users churned at higher rates than middle-aged subscribers, requiring age-specific engagement strategies.</li>
       </ul>
     </div>
 
     <div class="section">
-      <h2>Key Findings & Recommendations</h2>
+      <h2>The Solution: Predicting Risk Before Customers Leave</h2>
+      <p>We built and tested four machine learning models to predict which customers would churn: Logistic Regression (baseline), Stepwise Logistic Regression (feature selection), Random Forest (ensemble), and XGBoost (gradient boosting).</p>
       
-      <p><strong>Finding 1: Engagement Is the Dominant Driver</strong></p>
-      <p><em>Recommendation:</em> Launch personalized email nudges featuring new releases, push notifications for followed artists, and weekly listening summaries that gamify usage. Monitor engagement as leading indicator of churn risk.</p>
+      <img src="predictive-final_files/figure-pdf/accuracy-comparison-1.pdf" alt="Model Accuracy Comparison" style="max-width: 600px; background: white; padding: 1rem;">
+      
+      <p><strong>XGBoost emerged as the winner</strong> with 84.79% accuracy and an AUC of 0.94—meaning it could reliably rank customers by churn risk. But accuracy alone wasn't the goal. We needed to understand <em>why</em> the model made its predictions so we could guide business strategy.</p>
 
-      <p><strong>Finding 2: Subscription Type Segments Risk Dramatically</strong></p>
-      <p><em>Recommendation:</em> Design tier-specific strategies. Emphasize upgrade paths for free users, offer graduation transition discounts for students, and analyze tier economics.</p>
-
-      <p><strong>Finding 3: Customer Service Interactions Signal Friction</strong></p>
-      <p><em>Recommendation:</em> Invest in proactive support outreach for high-inquiry customers. Flag multi-contact users for retention follow-up and analyze inquiry themes to identify systemic issues.</p>
-
-      <p><strong>Finding 4: Content Alignment Matters</strong></p>
-      <p><em>Recommendation:</em> Improve recommendation algorithms with skip-behavior feedback loops. Introduce genre exploration features and test user control over recommendation settings.</p>
-
-      <p><strong>Finding 5: Age Demographics Require Segmentation</strong></p>
-      <p><em>Recommendation:</em> For younger users, emphasize social features and gamification. For older users, simplify interface and provide curated playlists. Middle-aged users benefit from family plans and loyalty rewards.</p>
+      <h3>What Mattered Most: Variable Importance</h3>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+        <img src="predictive-final_files/figure-pdf/variable-importance-1.pdf" alt="XGBoost Variable Importance" style="max-width: 48%; background: white; padding: 1rem;">
+        <img src="predictive-final_files/figure-pdf/variable-importance-2.pdf" alt="Random Forest Variable Importance" style="max-width: 48%; background: white; padding: 1rem;">
+      </div>
+      
+      <p>Across all models, three factors consistently ranked as the most powerful churn predictors:</p>
+      <ol>
+        <li><strong>Subscription Type:</strong> Free and student tiers churned at far higher rates than premium and family plans</li>
+        <li><strong>Weekly Listening Hours:</strong> Low engagement was the strongest behavioral signal of impending churn</li>
+        <li><strong>Customer Service Inquiries:</strong> High inquiry frequency indicated unresolved friction driving customers away</li>
+      </ol>
+      <p>This cross-model consistency gave leadership confidence: these weren't statistical artifacts—they were real, actionable business levers.</p>
     </div>
 
     <div class="section">
-      <h2>Project Outcomes & Business Value</h2>
+      <h2>Taking Action: A Risk-Based Retention System</h2>
+      <p>Prediction without action is just insight without impact. We designed a <strong>real-time, risk-based intervention system</strong> that personalizes retention offers at the moment customers attempt to cancel:</p>
+      
       <ul>
-        <li><strong>Production-Ready System:</strong> XGBoost model with 94% AUC enables reliable churn risk ranking</li>
-        <li><strong>Real-Time Intervention:</strong> Personalized retention offers presented at moment of cancellation</li>
-        <li><strong>Optimized Spending:</strong> Avoid unnecessary discounts for low-risk customers while maximizing impact on at-risk users</li>
-        <li><strong>Projected Impact:</strong> 10-15% churn reduction among high-risk users, saving millions annually in protected customer lifetime value</li>
-        <li><strong>Strategic Clarity:</strong> Clear, data-driven prioritization for marketing, customer success, and executive leadership</li>
+        <li><strong>Low Risk (&lt;30% churn probability):</strong> No discount offered—these customers are likely to stay regardless, so avoid wasting budget</li>
+        <li><strong>Medium Risk (30-60%):</strong> 15% discount for 3 months—a modest incentive to reinforce their decision to stay</li>
+        <li><strong>High Risk (60-85%):</strong> 30% discount for 6 months + personalized playlist—a meaningful offer that demonstrates value</li>
+        <li><strong>Critical Risk (&gt;85%):</strong> 50% discount for 3 months + premium features trial—an aggressive intervention for customers almost certainly leaving</li>
+      </ul>
+
+      <p>This tiered approach <strong>optimizes every dollar spent on retention</strong>. Low-risk customers don't get unnecessary discounts. High-risk customers receive compelling offers calibrated to their likelihood of churning. The system operates automatically, presenting personalized offers in under 200ms during the cancellation flow.</p>
+    </div>
+
+    <div class="section">
+      <h2>Business Recommendations: What Leadership Should Do Next</h2>
+      
+      <p><strong>1. Launch Engagement Campaigns Immediately</strong></p>
+      <p>Weekly listening hours is the dominant predictor. Marketing should deploy personalized email nudges featuring new releases in users' favorite genres, push notifications for followed artists, and weekly listening summaries that gamify usage. Monitor engagement as a leading indicator and trigger retention offers when usage drops.</p>
+
+      <p><strong>2. Redesign Free and Student Tier Strategy</strong></p>
+      <p>These tiers exhibit dramatically higher churn. Leadership must decide: Are they effective acquisition funnels worth the churn cost, or should resources focus on converting and retaining paying customers? Consider tier-specific campaigns emphasizing upgrade paths and transition discounts.</p>
+
+      <p><strong>3. Proactively Address Service Friction</strong></p>
+      <p>High inquiry frequency predicts churn because it signals unresolved issues. Flag customers who contact support multiple times within a short window for retention follow-up. Analyze inquiry themes (billing issues, technical bugs, feature confusion) to identify and fix systemic product problems.</p>
+
+      <p><strong>4. Improve Content Recommendation Quality</strong></p>
+      <p>Higher skip rates correlate with churn. Invest in recommendation algorithms that dynamically adjust based on skip behavior. Introduce genre exploration features and test whether giving users more control over recommendations reduces skip rates and improves retention.</p>
+
+      <p><strong>5. Segment Strategies by Age</strong></p>
+      <p>The U-shaped age-churn relationship requires targeted approaches. For younger users, emphasize social features and gamification. For older users, simplify the interface and provide curated playlists. Middle-aged users benefit from family plans and loyalty rewards.</p>
+    </div>
+
+    <div class="section">
+      <h2>Expected Business Value</h2>
+      <ul>
+        <li><strong>10-15% Churn Reduction Among High-Risk Users:</strong> Personalized interventions prevent thousands of cancellations annually</li>
+        <li><strong>Millions in Protected Customer Lifetime Value:</strong> Retaining customers avoids expensive acquisition costs and preserves recurring revenue</li>
+        <li><strong>Optimized Retention Spending:</strong> Avoid wasting discounts on loyal customers while maximizing impact on at-risk users</li>
+        <li><strong>Real-Time Scalability:</strong> Automated system replaces manual outreach, enabling consistent, personalized experiences for every customer</li>
+        <li><strong>Strategic Clarity:</strong> Clear, data-driven priorities for marketing, customer success, and executive leadership</li>
       </ul>
     </div>
 
     <div class="section" style="text-align: center;">
-      <h2>Full Analysis Reports</h2>
-      <p>Explore the complete analytical findings through our detailed reports:</p>
+      <h2>Full Technical Documentation</h2>
+      <p>Explore the complete analytical methodology, model diagnostics, and statistical validation:</p>
       <div class="report-buttons">
         <a href="playlist-pro-descriptive.html" class="report-btn" target="_blank" onclick="trackReportClick('Descriptive Analysis Report')">📊 Read Descriptive Analysis Report</a>
         <a href="playlist-pro-predictive.html" class="report-btn" target="_blank" onclick="trackReportClick('Predictive Analysis Report')">🤖 Read Predictive Analysis Report</a>
+      </div>
+      <div style="margin-top: 1.5rem;">
+        <a href="https://github.com/satkar605/playlist-pro" target="_blank" class="btn" onclick="trackGitHubClick('Playlist Pro Analytics')">View GitHub Repository</a>
       </div>
     </div>
 
