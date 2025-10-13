@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Playlist Pro Analytics | Satkar Karki</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SSLRX1KGV7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SSLRX1KGV7', {
+      page_title: 'Playlist Pro Analytics Project',
+      custom_map: {
+        'custom_parameter_1': 'user_type',
+        'custom_parameter_2': 'interaction_type'
+      }
+    });
+    
+    // Custom event tracking
+    function trackEvent(eventName, parameters = {}) {
+      gtag('event', eventName, {
+        event_category: 'Portfolio Interaction',
+        event_label: parameters.label || '',
+        value: parameters.value || 1,
+        ...parameters
+      });
+    }
+    
+    // Track report clicks
+    function trackReportClick(reportType) {
+      trackEvent('report_click', {
+        event_label: reportType,
+        custom_parameter_1: 'playlist_pro_project',
+        custom_parameter_2: 'analysis_report_view'
+      });
+    }
+    
+    // Track GitHub repo clicks
+    function trackGitHubClick(projectName) {
+      trackEvent('github_repo_click', {
+        event_label: projectName,
+        custom_parameter_1: 'project_engagement',
+        custom_parameter_2: 'code_interest'
+      });
+    }
+    
+    // Track time spent on page
+    let startTime = Date.now();
+    window.addEventListener('beforeunload', function() {
+      let timeSpent = Math.round((Date.now() - startTime) / 1000);
+      trackEvent('time_on_page', {
+        event_label: 'Playlist Pro',
+        value: timeSpent,
+        custom_parameter_1: 'engagement_duration',
+        custom_parameter_2: 'project_interest'
+      });
+    });
+  </script>
+  
+  <style>
+    .project-detail {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .project-detail h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .github-link {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .github-link a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #000;
+      border-radius: 6px;
+      background: #fff;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .github-link a:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .section,
+    .highlight-box {
+      background-color: #fffaf4;
+      border: 1px solid #ddd;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0.8rem;
+    }
+
+    .section img {
+      display: block;
+      margin: 1.5rem auto 0;
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #000;
+      background-color: #fff;
+      color: #000;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .btn:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .report-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+
+    .report-btn {
+      padding: 0.8rem 1.5rem;
+      border: 2px solid #2563eb;
+      background-color: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .report-btn:hover {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      line-height: 1.8;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="project-detail">
+    <h1>PlaylistPro Customer Churn Prediction & Retention Optimization</h1>
+
+    <div class="github-link">
+      <a href="https://github.com/satkar605/playlist-pro" target="_blank" onclick="trackGitHubClick('Playlist Pro Analytics')">View GitHub Repo</a>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>Client:</strong> USD Business Analytics Club (Playlist Pro Team)</p>
+      <p><strong>Executive Summary:</strong> PlaylistPro, a subscription-based music streaming service, faced a critical business challenge: nearly 50% of subscribers were churning, directly threatening recurring revenue and long-term profitability. This project delivered a comprehensive analytics solution combining predictive modeling and prescriptive optimization to identify at-risk customers early and design targeted retention strategies that maximize customer lifetime value.</p>
+    </div>
+
+    <div class="section">
+      <h2>Business Problem</h2>
+      <p>Customer churn represents a significant revenue loss for PlaylistPro. The company's reactive retention approach treated all customers uniformly, resulting in inefficient resource allocation. Marketing dollars were wasted on loyal customers who would have stayed anyway, while truly at-risk users received insufficient attention.</p>
+      <p>Without the ability to predict which customers were most likely to leave and why, PlaylistPro could not prioritize retention efforts effectively. <strong>The business question was clear: How can we identify customers at highest risk of churning and deploy retention resources optimally to protect revenue?</strong></p>
+    </div>
+
+    <div class="section">
+      <h2>Stakeholders & Business Impact</h2>
+      <p>This analysis directly addresses the needs of multiple organizational stakeholders:</p>
+      <ul>
+        <li><strong>Executive Leadership (CEO, CFO, COO):</strong> Quantifiable metrics on churn reduction, revenue protection, and return on investment from retention campaigns</li>
+        <li><strong>Marketing Leadership:</strong> Actionable customer segments and clear targeting criteria for retention campaigns, with personalized offers calibrated to risk levels</li>
+        <li><strong>Customer Success Teams:</strong> Prioritized customer lists and data-driven intervention triggers with real-time churn probability scores</li>
+        <li><strong>Finance Teams:</strong> Improved forecasting accuracy for customer lifetime value and reduced customer acquisition costs by retaining existing subscribers</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Analytical Approach</h2>
+      <p>The project followed a comprehensive three-phase analytical framework:</p>
+      
+      <h3>Phase 1: Descriptive Analysis</h3>
+      <p>Exploratory analysis of <strong>125,000 customer records</strong> across 19 variables revealed critical behavioral patterns:</p>
+      <ul>
+        <li><strong>Engagement Drives Retention:</strong> Customers with low weekly listening hours (under 10 hours) showed significantly higher churn rates</li>
+        <li><strong>Service Friction Signals Risk:</strong> 74% churn rate among customers with high service inquiries; frequent subscription pauses correlate with eventual churn</li>
+        <li><strong>Content Dissatisfaction:</strong> Higher song skip rates indicate misalignment between recommendations and user preferences</li>
+        <li><strong>Non-Linear Demographics:</strong> U-shaped age-churn relationship (younger and older users churn more than middle-aged subscribers)</li>
+        <li><strong>Payment & Geography Neutral:</strong> Churn rates consistent across payment methods, billing plans, and locations</li>
+      </ul>
+
+      <h3>Phase 2: Predictive Modeling</h3>
+      <p>Four supervised learning models were developed and rigorously compared:</p>
+      <ul>
+        <li><strong>Logistic Regression:</strong> Baseline model with interpretability (84% accuracy, AUC 0.90)</li>
+        <li><strong>Stepwise Logistic Regression:</strong> Feature selection via AIC optimization</li>
+        <li><strong>Random Forest:</strong> Ensemble bagging approach</li>
+        <li><strong>XGBoost (Winner):</strong> 84.79% validation accuracy, F1-score 0.8517, <strong>AUC 0.94</strong></li>
+      </ul>
+      <p><strong>Top Predictors:</strong> Subscription type, weekly listening hours, customer service inquiries, song skip rate, subscription pauses, and age (with quadratic term)</p>
+
+      <h3>Phase 3: Prescriptive Strategy</h3>
+      <p>A real-time, risk-based intervention system deployed during the unsubscribe process:</p>
+      <ul>
+        <li><strong>Low risk (&lt;30%):</strong> No discount (likely to stay regardless)</li>
+        <li><strong>Medium risk (30-60%):</strong> 15% discount for 3 months</li>
+        <li><strong>High risk (60-85%):</strong> 30% discount for 6 months + personalized playlist</li>
+        <li><strong>Critical risk (&gt;85%):</strong> 50% discount for 3 months + premium features trial</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Key Findings & Recommendations</h2>
+      
+      <p><strong>Finding 1: Engagement Is the Dominant Driver</strong></p>
+      <p><em>Recommendation:</em> Launch personalized email nudges featuring new releases, push notifications for followed artists, and weekly listening summaries that gamify usage. Monitor engagement as leading indicator of churn risk.</p>
+
+      <p><strong>Finding 2: Subscription Type Segments Risk Dramatically</strong></p>
+      <p><em>Recommendation:</em> Design tier-specific strategies. Emphasize upgrade paths for free users, offer graduation transition discounts for students, and analyze tier economics.</p>
+
+      <p><strong>Finding 3: Customer Service Interactions Signal Friction</strong></p>
+      <p><em>Recommendation:</em> Invest in proactive support outreach for high-inquiry customers. Flag multi-contact users for retention follow-up and analyze inquiry themes to identify systemic issues.</p>
+
+      <p><strong>Finding 4: Content Alignment Matters</strong></p>
+      <p><em>Recommendation:</em> Improve recommendation algorithms with skip-behavior feedback loops. Introduce genre exploration features and test user control over recommendation settings.</p>
+
+      <p><strong>Finding 5: Age Demographics Require Segmentation</strong></p>
+      <p><em>Recommendation:</em> For younger users, emphasize social features and gamification. For older users, simplify interface and provide curated playlists. Middle-aged users benefit from family plans and loyalty rewards.</p>
+    </div>
+
+    <div class="section">
+      <h2>Project Outcomes & Business Value</h2>
+      <ul>
+        <li><strong>Production-Ready System:</strong> XGBoost model with 94% AUC enables reliable churn risk ranking</li>
+        <li><strong>Real-Time Intervention:</strong> Personalized retention offers presented at moment of cancellation</li>
+        <li><strong>Optimized Spending:</strong> Avoid unnecessary discounts for low-risk customers while maximizing impact on at-risk users</li>
+        <li><strong>Projected Impact:</strong> 10-15% churn reduction among high-risk users, saving millions annually in protected customer lifetime value</li>
+        <li><strong>Strategic Clarity:</strong> Clear, data-driven prioritization for marketing, customer success, and executive leadership</li>
+      </ul>
+    </div>
+
+    <div class="section" style="text-align: center;">
+      <h2>Full Analysis Reports</h2>
+      <p>Explore the complete analytical findings through our detailed reports:</p>
+      <div class="report-buttons">
+        <a href="playlist-pro-descriptive.html" class="report-btn" target="_blank" onclick="trackReportClick('Descriptive Analysis Report')">📊 Read Descriptive Analysis Report</a>
+        <a href="playlist-pro-predictive.html" class="report-btn" target="_blank" onclick="trackReportClick('Predictive Analysis Report')">🤖 Read Predictive Analysis Report</a>
+      </div>
+    </div>
+
+    <div class="section" style="text-align:center;">
+      <a href="index.html" class="btn" onclick="trackEvent('back_to_home_click', { event_label: 'Playlist Pro' })">← Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>
+

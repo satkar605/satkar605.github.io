@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Analytics Team">
+<meta name="dcterms.date" content="2025-10-13">
+
+<title>Descriptive Analysis Report</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="descriptive_analysis_report_files/libs/clipboard/clipboard.min.js"></script>
+<script src="descriptive_analysis_report_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="descriptive_analysis_report_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="descriptive_analysis_report_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="descriptive_analysis_report_files/libs/quarto-html/popper.min.js"></script>
+<script src="descriptive_analysis_report_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="descriptive_analysis_report_files/libs/quarto-html/anchor.min.js"></script>
+<link href="descriptive_analysis_report_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="descriptive_analysis_report_files/libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="descriptive_analysis_report_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="descriptive_analysis_report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="descriptive_analysis_report_files/libs/bootstrap/bootstrap-e9ca626b016b4112d2a70750a73c6f58.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Descriptive Analysis Report</h1>
+<p class="subtitle lead">PlaylistPro Subscription Churn</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Analytics Team </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 13, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Customer churn is a major challenge for PlaylistPro, affecting nearly half of the subscriber base. This report provides a first step toward addressing it by describing what the data tells us about our customers today. The goal is not yet to predict or prescribe solutions, but to establish a clear picture of who our customers are, how they use the serive, and how churn differs across groups. These insights will set the stage for building predictive models and designing targeted retention strategies.</p>
+</section>
+<section id="response-variable-analysis" class="level1">
+<h1>Response Variable Analysis</h1>
+<p>The target variable is <strong><code>churned</code></strong> (binary: 0 = active customer, 1 = churned customer).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Churn Distribution Summary</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Metric</th>
+<th style="text-align: center;">Count</th>
+<th style="text-align: center;">Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">Active customers</td>
+<td style="text-align: center;">60826</td>
+<td style="text-align: center;">48.7%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: center;">Churned customers</td>
+<td style="text-align: center;">64174</td>
+<td style="text-align: center;">51.3%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: center;">Overall churn rate</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">51.3%</td>
+</tr>
+</tbody>
+</table>
+<p>Customer Churn Distribution</p>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/response-analysis-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Customer Churn Distribution</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The churn distribution is nearly even, indicating a systemic retention challenge rather than a niche issue. This balance split guides our visualization strategy by comparing customer segments, behaviors, and service patterns to pinpoint the areas most correlated with churn.</p>
+</section>
+<section id="summary-statistics" class="level1">
+<h1>Summary Statistics</h1>
+<section id="numeric-predictors-summary" class="level2">
+<h2 class="anchored" data-anchor-id="numeric-predictors-summary">Numeric Predictors Summary</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Summary Statistics for Numeric Predictors</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 11%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">variable</th>
+<th style="text-align: center;">min</th>
+<th style="text-align: center;">q1</th>
+<th style="text-align: center;">median</th>
+<th style="text-align: center;">q3</th>
+<th style="text-align: center;">max</th>
+<th style="text-align: center;">mean</th>
+<th style="text-align: center;">sd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">age</td>
+<td style="text-align: center;">18.000</td>
+<td style="text-align: center;">33.000</td>
+<td style="text-align: center;">48.000</td>
+<td style="text-align: center;">64.000</td>
+<td style="text-align: center;">79.000</td>
+<td style="text-align: center;">48.414</td>
+<td style="text-align: center;">17.901</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">average_session_length</td>
+<td style="text-align: center;">1.001</td>
+<td style="text-align: center;">30.644</td>
+<td style="text-align: center;">60.341</td>
+<td style="text-align: center;">90.234</td>
+<td style="text-align: center;">119.997</td>
+<td style="text-align: center;">60.422</td>
+<td style="text-align: center;">34.384</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">notifications_clicked</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">12.000</td>
+<td style="text-align: center;">24.000</td>
+<td style="text-align: center;">37.000</td>
+<td style="text-align: center;">49.000</td>
+<td style="text-align: center;">24.447</td>
+<td style="text-align: center;">14.423</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">num_favorite_artists</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">12.000</td>
+<td style="text-align: center;">25.000</td>
+<td style="text-align: center;">37.000</td>
+<td style="text-align: center;">49.000</td>
+<td style="text-align: center;">24.500</td>
+<td style="text-align: center;">14.446</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">num_platform_friends</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">50.000</td>
+<td style="text-align: center;">100.000</td>
+<td style="text-align: center;">150.000</td>
+<td style="text-align: center;">199.000</td>
+<td style="text-align: center;">99.713</td>
+<td style="text-align: center;">57.681</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">num_shared_playlists</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">12.000</td>
+<td style="text-align: center;">25.000</td>
+<td style="text-align: center;">37.000</td>
+<td style="text-align: center;">49.000</td>
+<td style="text-align: center;">24.554</td>
+<td style="text-align: center;">14.455</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">num_subscription_pauses</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">2.000</td>
+<td style="text-align: center;">3.000</td>
+<td style="text-align: center;">4.000</td>
+<td style="text-align: center;">1.991</td>
+<td style="text-align: center;">1.417</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">signup_date</td>
+<td style="text-align: center;">-2922.000</td>
+<td style="text-align: center;">-2190.000</td>
+<td style="text-align: center;">-1462.000</td>
+<td style="text-align: center;">-728.000</td>
+<td style="text-align: center;">-1.000</td>
+<td style="text-align: center;">-1460.679</td>
+<td style="text-align: center;">844.133</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">song_skip_rate</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">0.251</td>
+<td style="text-align: center;">0.501</td>
+<td style="text-align: center;">0.751</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">0.501</td>
+<td style="text-align: center;">0.289</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">weekly_hours</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">12.473</td>
+<td style="text-align: center;">25.117</td>
+<td style="text-align: center;">37.570</td>
+<td style="text-align: center;">50.000</td>
+<td style="text-align: center;">25.037</td>
+<td style="text-align: center;">14.447</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">weekly_songs_played</td>
+<td style="text-align: center;">3.000</td>
+<td style="text-align: center;">127.000</td>
+<td style="text-align: center;">251.000</td>
+<td style="text-align: center;">375.000</td>
+<td style="text-align: center;">499.000</td>
+<td style="text-align: center;">250.824</td>
+<td style="text-align: center;">143.328</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">weekly_unique_songs</td>
+<td style="text-align: center;">3.000</td>
+<td style="text-align: center;">76.000</td>
+<td style="text-align: center;">150.000</td>
+<td style="text-align: center;">225.000</td>
+<td style="text-align: center;">299.000</td>
+<td style="text-align: center;">150.783</td>
+<td style="text-align: center;">85.795</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The numeric predictors show well-centered distributions, with means and medians closely aligned across variables such as age, session length, and engagement metrics. No anomalies or extreme skews were detected, indicating stable data quality, while the negative values in signup_date simply reflect days since account creation rather than an error.</p>
+</section>
+<section id="categorical-predictors-summary" class="level2">
+<h2 class="anchored" data-anchor-id="categorical-predictors-summary">Categorical Predictors Summary</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+Table: Distribution of location
+
+|    Category    | Count | Percentage (%) |
+|:--------------:|:-----:|:--------------:|
+|    Georgia     | 6705  |      5.4       |
+|     Idaho      | 6697  |      5.4       |
+|    Vermont     | 6676  |      5.3       |
+|   California   | 6665  |      5.3       |
+|   Washington   | 6638  |      5.3       |
+|   New Jersey   | 6634  |      5.3       |
+|   Nebrasksa    | 6601  |      5.3       |
+| North Carolina | 6583  |      5.3       |
+|  North Dakota  | 6577  |      5.3       |
+|      Utah      | 6577  |      5.3       |
+|    New York    | 6574  |      5.3       |
+|    Alabama     | 6555  |      5.2       |
+|   Wisconsin    | 6553  |      5.2       |
+|    Virginia    | 6541  |      5.2       |
+| South Carolina | 6534  |      5.2       |
+|     Maine      | 6523  |      5.2       |
+| West Virginia  | 6486  |      5.2       |
+|    Florida     | 6480  |      5.2       |
+|    Montana     | 6401  |      5.1       |
+
+
+Table: Distribution of payment_plan
+
+| Category | Count | Percentage (%) |
+|:--------:|:-----:|:--------------:|
+| Monthly  | 62562 |       50       |
+|  Yearly  | 62438 |       50       |
+
+
+Table: Distribution of payment_method
+
+|  Category   | Count | Percentage (%) |
+|:-----------:|:-----:|:--------------:|
+| Debit Card  | 31292 |       25       |
+|   Paypal    | 31282 |       25       |
+|  Apple Pay  | 31213 |       25       |
+| Credit Card | 31213 |       25       |
+
+
+Table: Distribution of customer_service_inquiries
+
+| Category | Count | Percentage (%) |
+|:--------:|:-----:|:--------------:|
+|   Low    | 41873 |      33.5      |
+|   High   | 41583 |      33.3      |
+|  Medium  | 41544 |      33.2      |</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+--- location vs Churned ---
+                
+                    0    1
+  Alabama        3209 3346
+  California     3240 3425
+  Florida        3187 3293
+  Georgia        3208 3497
+  Idaho          3273 3424
+  Maine          3227 3296
+  Montana        3121 3280
+  Nebrasksa      3215 3386
+  New Jersey     3205 3429
+  New York       3217 3357
+  North Carolina 3203 3380
+  North Dakota   3183 3394
+  South Carolina 3159 3375
+  Utah           3191 3386
+  Vermont        3234 3442
+  Virginia       3233 3308
+  Washington     3204 3434
+  West Virginia  3153 3333
+  Wisconsin      3164 3389
+
+--- payment_plan vs Churned ---
+         
+              0     1
+  Monthly 30401 32161
+  Yearly  30425 32013
+
+--- payment_method vs Churned ---
+             
+                  0     1
+  Apple Pay   15015 16198
+  Credit Card 15355 15858
+  Debit Card  15177 16115
+  Paypal      15279 16003
+
+--- customer_service_inquiries vs Churned ---
+        
+             0     1
+  High   10673 30910
+  Low    29762 12111
+  Medium 20391 21153</code></pre>
+</div>
+</div>
+<p>The categorical predictors show balanced distributions across location, payment plan, and payment method, indicating no single category dominates the customer base. However, customer service inquiries stand out: churn is concentrated among those with high inquiry levels (74%), suggesting that service-related friction is a key churn driver. This finding directs visualization efforts toward customer service interactions, while maintaining comparisons across payment and regional segments to confirm whether churn patterns remain consistent.</p>
+</section>
+</section>
+<section id="measures-of-dispersion" class="level1">
+<h1>Measures of Dispersion</h1>
+<p>To understand how each numeric predictors spread relative ot its average, the coefficient of variation (CV) has been computed. Unlike plain standard deviation, CV is scale-free which enables comparing variability across different metrics even if they’re on different scales. This measure helps stakeholders see where customers differ the most, not just where the numbers of big.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   variable                    cv
+   &lt;chr&gt;                    &lt;dbl&gt;
+ 1 num_subscription_pauses  0.712
+ 2 notifications_clicked    0.59 
+ 3 num_favorite_artists     0.59 
+ 4 num_shared_playlists     0.589
+ 5 num_platform_friends     0.578
+ 6 weekly_hours             0.577
+ 7 song_skip_rate           0.576
+ 8 weekly_songs_played      0.571
+ 9 average_session_length   0.569
+10 weekly_unique_songs      0.569
+11 age                      0.37 
+12 signup_date             -0.578</code></pre>
+</div>
+</div>
+<p>Variables with high CV highlight where customers differ the most. User frequency in pausing subscriptions as measured by <code>num_subscription_pauses</code> show the highest variability. It implies that some customers rarely pause their subscription, while others pause frequently. Other variables with high CV can be roughly bucketed as in-app behaviors of the users as denoted by variables such as <code>notifications_clicked</code>, <code>num_favorite_artists</code>, <code>num_shared_playlists</code>, and so on consistently show high variation. This points to suggest that highly engaged users versus customers who barely use these features.</p>
+</section>
+<section id="correlation-analysis" class="level1">
+<h1>Correlation Analysis</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/correlation-analysis-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Correlation Heatmap - Numeric Predictors and Churn</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The correlation analysis shows which customer behaviors move together with churn. Most variables have weak correlations, meaning no single metric alone explains why customers leave. However, higher skip-rates (+0.16) and frequent subscription pauses (+0.18) are modestly linked to churn, while higher weekly hours (-0.3) appear linked to retention. These signals suggest that disengagement patterns, rather than demographics or platform activity counts, are stronger early signs for churns.</p>
+</section>
+<section id="visual-descriptive-analysis" class="level1">
+<h1>Visual Descriptive Analysis</h1>
+<section id="histogram---age" class="level3">
+<h3 class="anchored" data-anchor-id="histogram---age">Histogram - Age</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="density-plot---age" class="level3">
+<h3 class="anchored" data-anchor-id="density-plot---age">Density Plot - Age</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observing the histogram, churn and non-churn customers flatten across ages 25-60, showing no standout demographic in the middle ranges. The density plot, however, highlights that churn spikes at the edge with both younger (&lt;25) and older (&gt;60 ) groups are more prone to leave.</p>
+</section>
+<section id="histogram---weekly-listening-hours" class="level3">
+<h3 class="anchored" data-anchor-id="histogram---weekly-listening-hours">Histogram - Weekly Listening Hours</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="density-plot---weekly-listening-hours" class="level3">
+<h3 class="anchored" data-anchor-id="density-plot---weekly-listening-hours">Density Plot - Weekly Listening Hours</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>From the histogram, churned customers are clustered at the lower end (0-10 hours), while non-churns extend into higher listening ranges. The density plot reinforces this by showing churn density peaking in low engagment bands, while non-churns dominate the 30-50 hour range.</p>
+</section>
+<section id="histogram---average-session-length" class="level3">
+<h3 class="anchored" data-anchor-id="histogram---average-session-length">Histogram - Average Session Length</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="density-plot---average-session-length" class="level3">
+<h3 class="anchored" data-anchor-id="density-plot---average-session-length">Density Plot - Average Session Length</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both the histogram and density plot show relatively flat, overlapping distributions for chrun and non-churn, suggesting session duration does not distinguish customer churn behavior.</p>
+</section>
+<section id="histogram---weekly-songs-played" class="level3">
+<h3 class="anchored" data-anchor-id="histogram---weekly-songs-played">Histogram - Weekly Songs Played</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="density-plot---weekly-songs-played" class="level3">
+<h3 class="anchored" data-anchor-id="density-plot---weekly-songs-played">Density Plot - Weekly Songs Played</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Histogram shows even, flat patterns for both churned and non-churned customers. The density plot confirms little separation, meaning the total number of songs played weekly has limited impact on churn behavior.</p>
+</section>
+<section id="histogram---weekly-unique-songs" class="level3">
+<h3 class="anchored" data-anchor-id="histogram---weekly-unique-songs">Histogram - Weekly Unique Songs</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="density-plot---weekly-unique-songs" class="level3">
+<h3 class="anchored" data-anchor-id="density-plot---weekly-unique-songs">Density Plot - Weekly Unique Songs</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>While the histogram appears flat, the density plot indicates churned customers lean toward fewer unique groups, signaling that limited variety in music choices may be linked to higher churn risk.</p>
+</section>
+<section id="box-plot---notifications-clicked" class="level3">
+<h3 class="anchored" data-anchor-id="box-plot---notifications-clicked">Box-Plot - Notifications Clicked</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both churned and non-churned customers interact with notifications at similar levels, though churned users show a slightly lower minimum engagement.</p>
+</section>
+<section id="box-plot---favorite-artists" class="level3">
+<h3 class="anchored" data-anchor-id="box-plot---favorite-artists">Box-Plot - Favorite Artists</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The number of favorite artists is balanced across churned and non-churned groups, indicating this factor does not strongly influence churn.</p>
+</section>
+<section id="box-plot---platform-friends" class="level3">
+<h3 class="anchored" data-anchor-id="box-plot---platform-friends">Box-Plot - Platform Friends</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Customers, whether chruned or not, average around 100 friends on the platform, suggesting social connections alone does not drive churn.</p>
+</section>
+<section id="box-plot---count-of-shared-playlists" class="level3">
+<h3 class="anchored" data-anchor-id="box-plot---count-of-shared-playlists">Box-Plot - Count of Shared Playlists</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Churn and non-churn customers both maintain about 25 shared playlists on average, showing minimal difference in playlist-sharing behavior.</p>
+</section>
+<section id="box-plot---count-of-subscription-pauses" class="level3">
+<h3 class="anchored" data-anchor-id="box-plot---count-of-subscription-pauses">Box-Plot - Count of Subscription Pauses</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A clear difference emerges here as churned customers average three subscription pauses versus two for non-curned, signaling that repeated interruptions are an important churn marker.</p>
+</section>
+<section id="box-plot---song-skip-rate" class="level3">
+<h3 class="anchored" data-anchor-id="box-plot---song-skip-rate">Box-Plot - Song Skip Rate</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Churned customers display a higher skip rate, pointing to dissatisfcation with music recommendations and potential misalignment with user preferences.</p>
+</section>
+<section id="scatter-plot---weekly-hours-v.-weekly-songs-played" class="level3">
+<h3 class="anchored" data-anchor-id="scatter-plot---weekly-hours-v.-weekly-songs-played">Scatter Plot - Weekly Hours v. Weekly Songs Played</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When we look at the scatter above, churned customers cluster more in the lower-left corner with fewer weekly hours and fewer songs played. This highlights that customers with minimal engagement are at higher risk of leaving, while heavier users (higher weekly hours and song counts) are more likely to remain loyal.</p>
+</section>
+<section id="scatter-plot---song-skip-rate-vs.-average-session-length" class="level3">
+<h3 class="anchored" data-anchor-id="scatter-plot---song-skip-rate-vs.-average-session-length">Scatter Plot - Song Skip Rate vs.&nbsp;Average Session Length</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here, we observe churned customers concentrated at higher skip rates across all session lengths. This suggests that dissatisfaction with music recommendations is a churn driver, regardless of how long customers spend per session. Non-churned users maintain lower skip rates, indicating better alignment between their expectations and platform experience.</p>
+</section>
+<section id="categorical-distribution-visuals" class="level2">
+<h2 class="anchored" data-anchor-id="categorical-distribution-visuals">Categorical Distribution (Visuals)</h2>
+<section id="stacked-bar-charts" class="level3">
+<h3 class="anchored" data-anchor-id="stacked-bar-charts">Stacked Bar Charts</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Churn rates are consistent across all geographies, indicating no regional bias in customer retention or loss.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Monthly and yearly subscribers show nearly identical churn patterns, suggesting billing frequency has little effect on retention.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Churn distribution remains balanced across debit card, credit card, Apple Pay, and PayPal users, meaning payment choice is not a driver for churn.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Customers who contact service frequently are far more likely to churn, making inquiry volume a critical risk signal. This insight allows us to predict churn more accurately and design prescriptive actions that focus on reducing friction in the service experience, ultimately lowering churn rates.</p>
+</section>
+<section id="alluvial-plot---payment-plan-payment-method-churn" class="level3">
+<h3 class="anchored" data-anchor-id="alluvial-plot---payment-plan-payment-method-churn">Alluvial Plot - Payment Plan * Payment Method * Churn</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="descriptive_analysis_report_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The alluvial plot was created to examine how payment plans and payment methods flow into churn outcomes. It helps us see if billing preferences are linked to retention risk. The flows show that churn is evenly distributed across both monthly and yearly plans, as well as across all payment methods (credit card, debit card, Apple Pay, PayPal). In other words, how customers pay does not significantly influence whether they stay or leave.</p>
+</section>
+</section>
+</section>
+<section id="outliers-and-high-leverage-values" class="level1">
+<h1>Outliers and High-Leverage Values</h1>
+<p>Because our response variable is binary (churn vs.&nbsp;non-churn), the concept of outliers does not apply to it. Instead, we focused on the numeric predictors (x-variables) to check for anomalies. Using both z-score and IQR methos, no predictors showed extreme values outside accepted thresholds.</p>
+</section>
+<section id="missing-values" class="level1">
+<h1>Missing Values</h1>
+<p>The dataset provided by the Data Engineering team contained no missing values. This was confirmed during our initial exploratory data analysis, ensuring that all variables are complete and reliable for downstream modeling.</p>
+</section>
+<section id="conclusions" class="level1">
+<h1>Conclusions</h1>
+<p>Churn is nearly equal to retention, confirming it as a company-wide challenge. Low engagement, high skip rates, frequent subscription pauses, and heavy service inquiries are the clearest churn signals, while payment and location factors show no impact. With no missing values or anomalies, the data is reliable, and the focus now shifts to preparing it for model testing and evaluation, leading to the delivery of a predictive model that will quantify churn risk and support targeted retention strategies.</p>
+<div class="{=latex}">
+<div style="page-break-after: always;"></div>
+</div>
+</section>
+<section id="appendix" class="level1">
+<h1>Appendix</h1>
+<section id="outlier-and-high-leverage-check-summary" class="level2">
+<h2 class="anchored" data-anchor-id="outlier-and-high-leverage-check-summary">Outlier and High-Leverage Check Summary</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>                Variable      N Z_Outliers Z_Pct IQR_Outliers IQR_Pct
+                     age 125000          0     0            0       0
+             signup_date 125000          0     0            0       0
+            weekly_hours 125000          0     0            0       0
+  average_session_length 125000          0     0            0       0
+          song_skip_rate 125000          0     0            0       0
+     weekly_songs_played 125000          0     0            0       0
+     weekly_unique_songs 125000          0     0            0       0
+ num_subscription_pauses 125000          0     0            0       0
+    num_favorite_artists 125000          0     0            0       0
+    num_platform_friends 125000          0     0            0       0
+    num_shared_playlists 125000          0     0            0       0
+   notifications_clicked 125000          0     0            0       0</code></pre>
+</div>
+</div>
+</section>
+<section id="check-for-missing-values" class="level2">
+<h2 class="anchored" data-anchor-id="check-for-missing-values">Check for Missing Values</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>                     Variable MissingCount
+1                 customer_id            0
+2                         age            0
+3                    location            0
+4           subscription_type            0
+5                payment_plan            0
+6     num_subscription_pauses            0
+7              payment_method            0
+8  customer_service_inquiries            0
+9                 signup_date            0
+10               weekly_hours            0
+11     average_session_length            0
+12             song_skip_rate            0
+13        weekly_songs_played            0
+14        weekly_unique_songs            0
+15       num_favorite_artists            0
+16       num_platform_friends            0
+17      num_playlists_created            0
+18       num_shared_playlists            0
+19      notifications_clicked            0
+20                    churned            0</code></pre>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
