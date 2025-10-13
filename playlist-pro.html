@@ -190,7 +190,7 @@
     </div>
 
     <div class="highlight-box">
-      <p><strong>Client:</strong> USD Business Analytics Club (Playlist Pro Team)</p>
+      <p><strong>Client:</strong> PlaylistPro</p>
       <p><strong>Executive Summary:</strong> PlaylistPro, a subscription-based music streaming service, faced a critical business challenge: nearly 50% of subscribers were churning, directly threatening recurring revenue and long-term profitability. This project delivered a comprehensive analytics solution combining predictive modeling and prescriptive optimization to identify at-risk customers early and design targeted retention strategies that maximize customer lifetime value.</p>
     </div>
 
@@ -233,14 +233,14 @@
       <h2>The Solution: Predicting Risk Before Customers Leave</h2>
       <p>We built and tested four machine learning models to predict which customers would churn: Logistic Regression (baseline), Stepwise Logistic Regression (feature selection), Random Forest (ensemble), and XGBoost (gradient boosting).</p>
       
-      <img src="predictive-final_files/figure-pdf/accuracy-comparison-1.pdf" alt="Model Accuracy Comparison" style="max-width: 600px; background: white; padding: 1rem;">
+      <img src="predictive-final_files/figure-pdf/accuracy-comparison-1.png" alt="Model Accuracy Comparison" style="max-width: 600px;">
       
       <p><strong>XGBoost emerged as the winner</strong> with 84.79% accuracy and an AUC of 0.94—meaning it could reliably rank customers by churn risk. But accuracy alone wasn't the goal. We needed to understand <em>why</em> the model made its predictions so we could guide business strategy.</p>
 
       <h3>What Mattered Most: Variable Importance</h3>
       <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-        <img src="predictive-final_files/figure-pdf/variable-importance-1.pdf" alt="XGBoost Variable Importance" style="max-width: 48%; background: white; padding: 1rem;">
-        <img src="predictive-final_files/figure-pdf/variable-importance-2.pdf" alt="Random Forest Variable Importance" style="max-width: 48%; background: white; padding: 1rem;">
+        <img src="predictive-final_files/figure-pdf/variable-importance-1.png" alt="XGBoost Variable Importance" style="max-width: 48%;">
+        <img src="predictive-final_files/figure-pdf/variable-importance-2.png" alt="Random Forest Variable Importance" style="max-width: 48%;">
       </div>
       
       <p>Across all models, three factors consistently ranked as the most powerful churn predictors:</p>
