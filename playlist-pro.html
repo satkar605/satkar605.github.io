@@ -196,7 +196,9 @@
 
     <div class="section">
       <h2>The Problem: A Company Losing Half Its Customers</h2>
-      <img src="descriptive_analysis_report_files/figure-html/response-analysis-1.png" alt="Customer Churn Distribution" style="max-width: 600px;">
+      <div style="text-align: center; margin: 2rem 0;">
+        <img src="descriptive_analysis_report_files/figure-html/response-analysis-1.png" alt="Customer Churn Distribution" style="max-width: 600px; width: 100%; height: auto;">
+      </div>
       <p>The numbers told a stark story: <strong>51.3% of PlaylistPro's 125,000 customers had churned</strong>. This wasn't a small segment or niche issue—it was a systemic retention crisis threatening the company's survival. With churn and retention nearly equal, every customer decision mattered.</p>
       <p>The business question was urgent: <strong>How can we identify customers at highest risk of churning before they leave, and deploy retention resources optimally to protect revenue?</strong></p>
       <p>The company's reactive approach wasn't working. Marketing dollars were wasted on loyal customers who would have stayed anyway, while truly at-risk users received insufficient attention. PlaylistPro needed a data-driven system to predict churn risk and guide intervention strategies.</p>
@@ -215,9 +217,7 @@
 
     <div class="section">
       <h2>Discovery: What Drives Customers Away?</h2>
-      <p>Analyzing 125,000 customer records across 19 behavioral and demographic variables, we discovered that <strong>no single factor explained churn</strong>. The correlation analysis revealed weak relationships across the board:</p>
-      <img src="descriptive_analysis_report_files/figure-html/correlation-analysis-1.png" alt="Correlation Heatmap" style="max-width: 700px;">
-      <p>This finding was crucial: churn wasn't driven by one obvious problem we could fix. Instead, it emerged from <strong>patterns of behavior</strong> that, when combined, signaled customer disengagement. The business needed a sophisticated model to detect these patterns early.</p>
+      <p>Analyzing 125,000 customer records across 19 behavioral and demographic variables, we discovered that <strong>no single factor alone explained churn</strong>. Instead, churn emerged from <strong>patterns of behavior</strong> that, when combined, signaled customer disengagement. The business needed a sophisticated model to detect these patterns early.</p>
       
       <h3>Key Behavioral Signals Emerged:</h3>
       <ul>
